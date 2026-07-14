@@ -1513,6 +1513,24 @@ function zoneWatchList(S) {
   return map;
 }
 
+/* ---------- exercices hors séance ---------- */
+const parseFreeVal = (v) => {
+  const m = String(v == null ? "" : v).match(/(\d+)\s*[x×*]\s*(\d+)/i);
+  if (m) return (+m[1]) * (+m[2]);
+  const n = firstNum(v);
+  return n != null ? n : 0;
+};
+const freeEntries = (date) => (S.free || []).filter((f) => f.date === date);
+function freeVolumeByCat(date) {
+  const map = {};
+  freeEntries(date).forEach((f) => {
+    const cat = (EXOS[f.exName] || {}).cat || "Autre";
+    map[cat] = (map[cat] || 0) + parseFreeVal(f.value);
+  });
+  return map;
+}
+const freeVolume = (date) => Object.values(freeVolumeByCat(date)).reduce((a, b) => a + b, 0);
+
 /* ---------- objectifs effectifs (base + adaptations du coach + réglages) ---------- */
 function effectiveTarget(session, slot) {
   const base = session.exos.find((e) => e.slot === slot);
@@ -1649,6 +1667,12 @@ function analyzeSession(session) {
   const prev = prevSessionLog(session);
   const positives = [], improvements = [], adaptations = [];
   const isT = (n) => isTimeUnit(n);
+  const sDay = (log.validatedAt || new Date().toISOString()).slice(0, 10);
+  const freeCat = freeVolumeByCat(sDay);
+  const freeDayTotal = Object.values(freeCat).reduce((a, b) => a + b, 0);
+  if (freeDayTotal > 0) {
+    positives.push(`Travail hors séance comptabilisé aujourd'hui : ${freeDayTotal} répétitions/secondes (${freeEntries(sDay).map((f) => f.exName + " " + f.value).join(", ")}) — j'en tiens compte dans l'analyse.`);
+  }
 
   /* — comparaison avec la séance précédente du même type — */
   let progressTxt = null;
@@ -1711,6 +1735,9 @@ function analyzeSession(session) {
     } else if (r.okSets > 0 && r.okSets >= Math.ceil(r.plannedSets / 2)) {
       improvements.push(`${name} : ${r.okSets}/${r.plannedSets} séries validées — la dernière série était de trop, c'est normal.`);
       adaptations.push({ ex: r.target.base, kind, action: "conserver", detail: `${name} : objectifs conservés, repos entre séries allongé de 15–30 s la prochaine fois.`, apply: {} });
+    } else if ((freeCat[(exInfo(name) || {}).cat] || 0) >= 20) {
+      improvements.push(`${name} : séance compliquée (${r.okSets}/${r.plannedSets} séries) — normal, ces muscles avaient déjà travaillé hors séance aujourd'hui.`);
+      adaptations.push({ ex: r.target.base, kind, action: "conserver", detail: `${name} : objectifs conservés — la difficulté vient du volume déjà fait hors séance, pas d'un recul.`, apply: {} });
     } else {
       const d = isT(name) ? -5 : -2;
       improvements.push(`${name} : séance compliquée (${r.okSets}/${r.plannedSets} séries).`);
@@ -1786,6 +1813,9 @@ function recoveryState() {
   }
   const pains = recentPains(S, 3).filter((p) => (p.intensity || 0) >= 4);
   score -= pains.length * 10;
+  const fvToday = freeVolume(t), fvYest = freeVolume(addDays(t, -1));
+  if (fvToday >= 60) score -= 8; else if (fvToday >= 30) score -= 4;
+  if (fvYest >= 60) score -= 4;
   // séances dures récentes ?
   const y = addDays(t, -1);
   const hardYesterday = ALL_SESSIONS.some((s) => {
@@ -1837,12 +1867,15 @@ function weightTrend() {
 function weeklyVolume(weekN) {
   const wk = PLAN.find((w) => w.n === weekN);
   if (!wk) return 0;
-  return wk.sessions.reduce((a, s) => {
+  const sessions = wk.sessions.reduce((a, s) => {
     const log = S.logs[s.id];
     if (!log || !["done", "partial"].includes(log.state)) return a;
     const st = sessionStats(s);
     return a + (st ? st.totalReps : 0);
   }, 0);
+  const free = (S.free || []).filter((f) => f.date >= wk.start && f.date <= wk.end)
+    .reduce((a, f) => a + parseFreeVal(f.value), 0);
+  return sessions + free;
 }
 
 /* ---------- conseils alimentaires ---------- */
@@ -1921,6 +1954,8 @@ function dailyCoachTip(next) {
   const zones = Object.keys(watch);
   if (zones.length && Math.max(...Object.values(watch)) >= 5)
     return { tone: "bad", txt: `Douleur récente (${zones.map((z) => ZONE_LABEL[z] || z).join(", ")}) : aujourd'hui, on évite tout ce qui la réveille. Les remplacements sont prêts dans la séance.` };
+  const fvT = freeVolume(todayISO());
+  if (fvT >= 40 && next) return { tone: "info", txt: `Tu as déjà fait ${fvT} répétitions hors séance aujourd'hui — c'est noté. Si tu fais la séance en plus, vise le bas des fourchettes sur les muscles déjà sollicités.` };
   if (rec.label === "Basse") return { tone: "warn", txt: rec.advice };
   if (next && next.optional) return { tone: "info", txt: "Séance facultative aujourd'hui : uniquement si tu en as envie et que la forme est là. Sinon, repos mérité." };
   if (rec.label === "Bonne") return { tone: "ok", txt: "Bonne récupération : vise le haut des fourchettes aujourd'hui, et note tout — c'est comme ça que je te fais progresser." };
@@ -2419,7 +2454,7 @@ const DEFAULT_STATE = () => ({
     liked: [], disliked: [], maxDuration: 45, hour: "18:30",
     weighFreq: "2-3 fois par semaine", painThreshold: 5, reminders: true,
   },
-  logs: {}, sched: {}, subs: {}, adapt: {}, pains: [], weights: [], reports: {}, checkins: {},
+  logs: {}, sched: {}, subs: {}, adapt: {}, pains: [], weights: [], free: [], reports: {}, checkins: {},
 });
 
 function loadState() {
@@ -2432,7 +2467,7 @@ function loadState() {
     out.profile = Object.assign(DEFAULT_STATE().profile, parsed.profile || {});
     out.settings = Object.assign(DEFAULT_STATE().settings, parsed.settings || {});
     ["logs", "sched", "subs", "adapt", "reports", "checkins"].forEach((k) => { if (!out[k]) out[k] = {}; });
-    ["pains", "weights"].forEach((k) => { if (!Array.isArray(out[k])) out[k] = []; });
+    ["pains", "weights", "free"].forEach((k) => { if (!Array.isArray(out[k])) out[k] = []; });
     return out;
   } catch (e) {
     console.error("État illisible, on repart de zéro", e);
@@ -2575,6 +2610,14 @@ function renderHome() {
   } else {
     h += `<div class="card center"><h2>🎉 Programme terminé</h2><p class="sub">Toutes les séances sont passées. Exporte ton bilan et prépare le programme suivant !</p></div>`;
   }
+
+  /* hors séance */
+  const freeT = freeEntries(t);
+  const freeTot = freeT.reduce((s2, f) => s2 + parseFreeVal(f.value), 0);
+  h += `<div class="card"><div class="row between">
+    <span><strong>🏃 Hors séance</strong><br><span class="xs muted">${freeT.length ? `${freeT.length} exercice${freeT.length > 1 ? "s" : ""} aujourd'hui · ${freeTot} rép./s — le coach en tient compte` : "Pompes de midi, marche, petits défis… tout compte pour le coach."}</span></span>
+    <button class="btn sm cool" style="flex:none" data-act="free-sheet">＋ Ajouter</button></div>
+    ${freeT.length ? `<div style="margin-top:9px">${freeT.map((f) => `<span class="chip" style="margin:2px 3px 2px 0">${esc(f.exName)} · ${esc(f.value)}</span>`).join("")}</div>` : ""}</div>`;
 
   /* check-in du jour */
   h += `<div class="card"><h2>📋 Mon état aujourd'hui</h2>
@@ -2767,6 +2810,18 @@ function renderTrack() {
     <button class="btn danger sm" style="margin-top:12px" data-act="pain-sheet">Signaler une douleur (hors séance)</button></div>`;
 
   /* historiques */
+  h += `<div class="card"><div class="row between"><h2 style="margin:0">🏃 Hors séance</h2>
+    <button class="btn sm cool" style="flex:none" data-act="free-sheet">＋ Ajouter</button></div>`;
+  if (S.free.length) {
+    h += S.free.slice(-10).reverse().map((f) =>
+      `<div class="row between" style="border-top:1px solid var(--line);padding:9px 0;margin-top:8px">
+        <span class="small"><strong>${esc(f.exName)}</strong> · ${esc(f.value)}${f.load ? " · " + esc(f.load) : ""}<br>
+        <span class="xs muted">${frDate(f.date)}${f.time ? " " + esc(f.time) : ""}${f.feel ? " · " + esc(f.feel) : ""}${f.note ? " · " + esc(f.note) : ""}</span></span>
+        <button class="iconbtn" data-act="free-del" data-fid="${esc(f.id)}">🗑</button></div>`).join("");
+  } else {
+    h += `<p class="sub" style="margin-top:8px">Rien pour l'instant. Les 10 pompes de midi, la marche rapide autour du lac… note-les ici : le coach adapte la séance et la récupération en fonction.</p>`;
+  }
+  h += `</div>`;
   if (S.pains.length) {
     h += `<div class="card"><h2>Historique des douleurs</h2>${S.pains.slice(-8).reverse().map((p) =>
       `<div class="row between" style="border-top:1px solid var(--line);padding:9px 0">
@@ -2954,6 +3009,11 @@ function buildBilanText() {
     L.push(""); L.push("--- PESÉES ---");
     weightSeries().forEach((w) => L.push(`  ${w.date} : ${w.kg} kg${w.waist ? ", taille " + w.waist + " cm" : ""}${w.chest ? ", poitrine " + w.chest : ""}${w.arm ? ", bras " + w.arm : ""}${w.thigh ? ", cuisse " + w.thigh : ""}${w.cond ? " (" + w.cond + ")" : ""}${w.feel ? " — " + w.feel : ""}`));
   }
+  if (S.free.length) {
+    L.push(""); L.push("--- EXERCICES HORS SÉANCE ---");
+    S.free.slice().sort((x, y) => (x.date < y.date ? -1 : 1)).forEach((f) =>
+      L.push(`  ${f.date}${f.time ? " " + f.time : ""} : ${f.exName} — ${f.value}${f.load ? " (" + f.load + ")" : ""}${f.feel ? " — " + f.feel : ""}${f.note ? " — " + f.note : ""}`));
+  }
   const adaptRows = [];
   Object.entries(S.adapt).forEach(([k, m]) => Object.entries(m).forEach(([ex, a]) => adaptRows.push(`  ${ex} (${k}) : ${a.swap ? "→ " + a.swap + " " : ""}${a.dReps ? (a.dReps > 0 ? "+" : "") + a.dReps + " rép " : ""}${a.dSets ? (a.dSets > 0 ? "+" : "") + a.dSets + " série " : ""}(${a.note || "ajustement"})`)));
   if (adaptRows.length) { L.push(""); L.push("--- ADAPTATIONS ACTIVES DU PROGRAMME ---"); adaptRows.forEach((r) => L.push(r)); }
@@ -3091,6 +3151,7 @@ Object.assign(ACTIONS, {
     S.sched = {}; S.adapt = {};
     Object.values(S.reports).forEach((r) => applyAdaptations(r));
     S.pains = (S.pains || []).filter((p) => p.date === t);
+    S.free = (S.free || []).filter((f) => f.date === t);
     S.checkins = S.checkins[t] ? { [t]: S.checkins[t] } : {};
     save(); closeSheet(); go("home"); toast("Essais effacés — aujourd'hui, pesées et profil conservés ✅");
   },
@@ -3103,6 +3164,47 @@ Object.assign(INPUTS, {
   "prof": (d, v) => { S.profile[d.k] = v; saveSoon(); },
   "sett": (d, v) => { S.settings[d.k] = v; saveSoon(); },
 });
+
+/* ============================ HORS SÉANCE ============================ */
+function sheetFree() {
+  UI.ff = { date: todayISO(), exName: "Pompes classiques", custom: "", value: "", load: "", feel: "", note: "" };
+  renderFreeSheet();
+}
+function renderFreeSheet() {
+  const f = UI.ff;
+  openSheet(`<div class="sheet-head"><h2>🏃 Exercice hors séance</h2><button class="sheet-x" data-act="close-sheet">✕</button></div>
+    <p class="sub">Tout ce que tu fais en dehors des séances prévues : le coach le comptabilise (volume, récupération, adaptation).</p>
+    <label class="field" style="margin-top:12px">Exercice
+      <select data-in="ff" data-k="exName">
+        ${EX_CATS.map((cat) => `<optgroup label="${cat}">${exByCat(cat).map((n) => `<option ${f.exName === n ? "selected" : ""}>${esc(n)}</option>`).join("")}</optgroup>`).join("")}
+      </select></label>
+    <label class="field">…ou autre chose (texte libre — remplace le choix ci-dessus)
+      <input type="text" value="${esc(f.custom)}" placeholder="ex : marche rapide 30 min, natation" data-in="ff" data-k="custom"></label>
+    <label class="field">Combien ? *
+      <input type="text" value="${esc(f.value)}" placeholder="ex : 10 — ou 3×10 — ou 45 s" data-in="ff" data-k="value"></label>
+    <div class="tiles">
+      <label class="field">Charge (facultatif)<input type="text" value="${esc(f.load)}" placeholder="ex : sac 6 kg" data-in="ff" data-k="load"></label>
+      <label class="field">Date<input type="date" value="${f.date}" data-in="ff" data-k="date"></label>
+    </div>
+    <label class="field">Ressenti (facultatif)<div class="seg">
+      ${[["facile", "Facile", "g"], ["correct", "Correct", "b"], ["difficile", "Difficile", "o"]].map(([v, l, cl]) =>
+        `<button class="${f.feel === v ? "on " + cl : ""}" data-act="free-feel" data-v="${v}">${l}</button>`).join("")}</div></label>
+    <label class="field">Note (facultatif)<input type="text" value="${esc(f.note)}" placeholder="ex : fait à midi sur le bateau" data-in="ff" data-k="note"></label>
+    <button class="btn cool" data-act="free-save">Enregistrer</button>`, true);
+}
+Object.assign(ACTIONS, {
+  "free-sheet": () => sheetFree(),
+  "free-feel": (d) => { UI.ff.feel = UI.ff.feel === d.v ? "" : d.v; renderFreeSheet(); },
+  "free-save": () => {
+    const f = UI.ff;
+    const name = (f.custom || "").trim() || f.exName;
+    if (!name || !String(f.value).trim()) { toast("Indique au moins l'exercice et le nombre 🙂"); return; }
+    S.free.push({ id: "f" + Date.now(), date: f.date || todayISO(), time: new Date().toTimeString().slice(0, 5), exName: name, value: String(f.value).trim(), load: f.load || "", feel: f.feel || "", note: f.note || "" });
+    save(); closeSheet(); render(); toast("C'est noté — le coach en tiendra compte 💪");
+  },
+  "free-del": (d) => { S.free = S.free.filter((x) => x.id !== d.fid); save(); render(); },
+});
+Object.assign(INPUTS, { "ff": (d, v) => { UI.ff[d.k] = v; } });
 
 /* ============================ ÉVÉNEMENTS ============================ */
 document.addEventListener("click", (e) => {
