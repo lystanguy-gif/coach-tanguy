@@ -41,7 +41,7 @@ promotionnel.
 Prospection commerciale et newsletters non sollicitées.
 
 ```
-marionnaud.paris OR news.darty.com OR mms.com OR emailing.bonnegueule.fr OR insideapple.apple.com OR nedm.asus.com OR news.asus.com OR fr-mail.canalplus.com OR emailing.canalplus.fr OR news.lecomptoirdemathilde.com OR emailing.pagesjaunes.fr OR actu.mifassur.com OR news.qare.fr OR studyrama.com OR lifecycle.quizlet.com OR academia-mail.com OR email.feverup.com OR lasergame-evolution.com OR macarte.giropharm.fr OR music.deezer.com OR engage.microsoft.com OR engagement.microsoft.com OR slidesgpt.com OR etudes-online.fr OR mail-digiposte.laposte.info OR email.memphis-restaurant.com OR newsletters-brgm.fr OR fondationsaintpierre.org OR artexplora.org OR yoo.paris OR feedback.avis-verifies.com OR email.fastt.org OR facebookmail.com OR discover@airbnb.com OR bebee.com OR hubspotemail.net
+marionnaud.paris OR news.darty.com OR mms.com OR emailing.bonnegueule.fr OR insideapple.apple.com OR nedm.asus.com OR news.asus.com OR fr-mail.canalplus.com OR emailing.canalplus.fr OR news.lecomptoirdemathilde.com OR emailing.pagesjaunes.fr OR actu.mifassur.com OR news.qare.fr OR studyrama.com OR partenaire.studyrama.com OR lifecycle.quizlet.com OR academia-mail.com OR email.feverup.com OR lasergame-evolution.com OR macarte.giropharm.fr OR music.deezer.com OR engage.microsoft.com OR engagement.microsoft.com OR slidesgpt.com OR etudes-online.fr OR mail-digiposte.laposte.info OR email.memphis-restaurant.com OR newsletters-brgm.fr OR fondationsaintpierre.org OR artexplora.org OR yoo.paris OR feedback.avis-verifies.com OR email.fastt.org OR facebookmail.com OR discover@airbnb.com OR bebee.com OR hubspotemail.net
 ```
 
 Les plus gros volumes de la boîte sont ici : Marionnaud, Darty, M&M'S,
