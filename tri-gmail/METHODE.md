@@ -1,29 +1,73 @@
-# Tri de la boîte Gmail de Tanguy Lys — méthode et état
+# Tri de la boîte Gmail de Tanguy Lys — méthode
 
-Compte : `lystanguy@gmail.com`. Reprise de la passation du 14 septembre 2026.
+Compte : `lystanguy@gmail.com`. Méthode issue de la passation du 14 septembre
+2026 et de deux sessions de traitement complet. Elle est réutilisable telle
+quelle pour entretenir la boîte ou trier une autre boîte.
 
-## 1. Méthode qui marche (à réutiliser)
+## 1. Méthode qui marche
 
 ### Le connecteur Gmail ne sait poser un libellé que sur un fil à la fois
 Pas de `batchModify`, pas de création de filtre Gmail via l'outil. En revanche,
-Claude Code peut émettre **25 appels `label_thread` en parallèle dans un seul
-tour**, et `label_thread` accepte **plusieurs libellés par appel**. Le débit réel
-est donc d'environ 25 fils par tour, pas 1.
+Claude Code peut émettre **50 appels `label_thread` en parallèle dans un seul
+tour**, et `label_thread` accepte **plusieurs libellés par appel**. Avec un tour
+de recherche pour un tour d'étiquetage, le débit réel est d'environ **50 fils
+pour deux tours**.
 
 ### `-label:Label_X` ne fonctionne pas dans la recherche
 L'exclusion par identifiant de libellé est ignorée silencieusement : la requête
 renvoie les fils déjà étiquetés. **Utiliser `has:nouserlabels`**, qui isole les
 fils jamais traités.
 
-Conséquence très utile : une fois un lot étiqueté, il sort de la requête. Il
-suffit donc de **relancer la même requête sans `pageToken`** pour obtenir le lot
-suivant. Le tri devient reprenable et sans état, et les jetons de pagination
-non durables ne posent plus problème.
+Même remarque pour la sélection : `label:Label_3` ne renvoie rien non plus. Pour
+compter les fils d'un libellé, passer par **`list_labels`**, qui donne
+`threadsTotal` et `messagesTotal` exacts pour chaque libellé.
+
+### La boucle est sans état, donc reprenable
+Une fois un lot étiqueté, il sort de `has:nouserlabels`. Il suffit donc de
+**relancer la même requête sans `pageToken`** pour obtenir le lot suivant. Les
+jetons de pagination ne servent jamais.
+
+Effet secondaire précieux : **la boucle se répare toute seule**. Le connecteur
+renvoie de temps en temps « The service is currently unavailable » sur un appel
+isolé. Le fil concerné n'est simplement pas étiqueté, donc il réapparaît en tête
+du lot suivant et sera repris. Rien à faire, ne pas réessayer à la main.
+
+### Découper la boîte en partitions natives avant de ratisser
+Traiter d'abord les catégories Gmail une par une, chacune jusqu'à épuisement,
+puis le reste. C'est ce qui rend le volume tenable, car chaque partition est
+homogène et se tranche presque toujours sur le seul expéditeur :
+
+```
+in:inbox has:nouserlabels category:promotions
+in:inbox has:nouserlabels category:updates
+in:inbox has:nouserlabels category:social
+in:inbox has:nouserlabels category:forums
+in:inbox has:nouserlabels
+```
+
+### Savoir quand une partition est épuisée
+`resultCountEstimate` est **plafonné à 201**. Il ne descend en dessous que
+lorsqu'il reste moins de deux cents fils. Une valeur inférieure à 201 est donc
+le signal fiable de fin de catégorie ; la recherche suivante renvoie `{}`.
 
 ### Les catégories sont additives
-Chaque catégorie se traite par une passe indépendante (par expéditeur ou par
-mot-clé). Un fil qui relève de deux catégories reçoit naturellement ses deux
-libellés au fil des passes. Inutile d'arbitrer les doubles appartenances d'avance.
+Chaque passe est indépendante. Un fil qui relève de deux catégories reçoit
+naturellement ses deux libellés au fil des passes. Inutile d'arbitrer les
+doubles appartenances d'avance.
+
+### Vues
+`THREAD_VIEW_METADATA_ONLY` suffit pour les expéditeurs automatiques en masse :
+l'adresse tranche seule, et la vue est légère.
+
+**`THREAD_VIEW_MINIMAL` est indispensable pour la passe finale
+`in:inbox has:nouserlabels`.** Ce reliquat contient de la correspondance
+personnelle, où l'adresse ne dit rien. C'est en lisant l'objet et l'aperçu qu'on
+découvre par exemple que `maisonfamille05160@gmail.com` signe « Maman » (voir
+§ 3). Sans l'objet, ce fil serait parti dans À vérifier.
+
+`get_thread` en `MINIMAL` pour lever un doute sans charger les pièces jointes ;
+`FULL_CONTENT` seulement quand le détail est nécessaire (le contenu d'un reçu
+Apple, par exemple, n'apparaît pas autrement).
 
 ### Quand une recherche dépasse le contexte
 `search_threads` écrit alors le JSON dans un fichier et renvoie son chemin.
@@ -33,12 +77,14 @@ L'extraire avec `jq` plutôt que de le relire :
 jq -r '.threads[] | .id + " | " + (.messages[0].subject // "(sans objet)") + " | " + (.messages[0].snippet // "")' FICHIER
 ```
 
-C'est la voie à privilégier pour Publicité et Abonnements.
+### Deux règles de tranchage
+**Hésitation entre Publicité et Abonnements → Abonnements.** Tanguy envisage de
+supprimer le lot Publicité ; mieux vaut garder un prospectus que perdre une
+facture.
 
-### Vues
-`THREAD_VIEW_METADATA_ONLY` quand l'expéditeur suffit à trancher (léger).
-`THREAD_VIEW_MINIMAL` quand il faut l'objet et l'aperçu.
-`get_thread` en `MINIMAL` pour lever un doute sans charger les pièces jointes.
+**Doute réel → À vérifier.** Ne jamais deviner : politique, administratif,
+correspondants inconnus, tout ce qui ne rentre pas proprement dans les neuf
+catégories y est garé pour relecture avec Tanguy.
 
 ## 2. Libellés
 
@@ -63,9 +109,17 @@ C'est la voie à privilégier pour Publicité et Abonnements.
 
 ## 3. Corrections et découvertes par rapport à la passation
 
+### `maisonfamille05160@gmail.com` est la mère
+Cette adresse, qui ne ressemble à rien, **signe « Maman »**. Elle ne figurait
+dans aucune des listes de la passation. Elle va dans **Famille**.
+
 ### Adresses famille, liste complétée
-Aux cinq adresses connues s'ajoute **`isabelle.lys@maif.fr`** (la mère, encore
-une autre adresse). La requête famille doit couvrir les six.
+Aux cinq adresses connues s'ajoutent **`isabelle.lys@maif.fr`** (la mère, encore
+une autre adresse) et `maisonfamille05160@gmail.com` ci-dessus.
+
+### Piège signalé par la passation, confirmé
+**`isa.said5690@gmail.com` n'est pas la mère**, c'est une camarade de droit.
+Ne pas la classer en Famille.
 
 ### Adresse secondaire de Tanguy
 **`jeuxdetanguy@gmail.com`** est une adresse de Tanguy lui-même, pas un tiers.
@@ -73,7 +127,8 @@ une autre adresse). La requête famille doit couvrir les six.
 ### Tanguy s'envoie ses cours à lui-même
 Plusieurs fils `lystanguy@gmail.com` → `lystanguy@gmail.com` sans objet sont des
 **prises de notes de cours** (droit constitutionnel, juridictions, souveraineté).
-Ne pas les confondre avec des brouillons : ils vont dans Cours.
+Ne pas les confondre avec des brouillons : ils vont dans Cours. Idem pour
+`math.dugelay@orange.fr`, objet « Cours ».
 
 ### Léa Brun n'est pas de la famille
 **`brunlea32@gmail.com`** (Léa Brun) est la compagne de Tanguy. Classée Perso,
@@ -101,19 +156,15 @@ auroredelavet@gmail.com       samira.meziani0111@gmail.com
 vergizovmark@gmail.com        Yeray.b81@gmail.com
 ```
 
-## 4. Question ouverte pour Tanguy : une catégorie manque
+### Une erreur de routage à corriger
+`contact@exchange-college.com` a d'abord été envoyé dans À vérifier sur la seule
+foi de l'adresse. Les objets (« formations en banque, finance et assurance »,
+« session d'information et d'admission ») montrent que c'est **une école** : les
+fils suivants sont partis dans Fac. Trois fils restent à déplacer.
 
-Une dizaine de fils relèvent d'un **engagement politique** (Rassemblement
-National Jeunesse, fonction de délégué départemental jeunesse, démission de
-cette fonction, plan d'action RNJ, matériel et événements). Cela ne rentre dans
-aucune des neuf catégories définies.
+## 4. État et questions ouvertes
 
-Ces fils sont pour l'instant dans **À vérifier**. Il faudrait soit créer un
-libellé dédié, soit décider de les verser dans Perso.
-
-## 5. Autres cas déposés dans À vérifier
-
-- `195edc9e94737fad` CV à Olivier Alemany transféré au père (déjà signalé)
-- `1940cb6abf28bb84` échange avec la gendarmerie, objet « Photo menace Lys »
-- `19dbadd03bce6319` envoi à un service de reprographie, contenu non identifié
-- fils sans objet ni aperçu, contenu uniquement en pièce jointe
+Voir `ETAT.md` : compteurs finaux, et les trois décisions qui attendent Tanguy
+(catégorie politique manquante, catégorie Canada / Québec manquante, recoupement
+des libellés préexistants `job` / `pole emploi` / `alternance chaudronnerie
+recherche` / `CAF` / `administratif` avec les nouveaux).

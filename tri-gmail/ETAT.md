@@ -1,85 +1,120 @@
-# État du tri au 14 septembre 2026, fin de session Claude Code
+# État du tri — boîte Gmail de Tanguy Lys
 
-## Compteurs de libellés, avant et après
+Dernière mise à jour : 14 septembre 2026, fin de la seconde session.
 
-| Libellé | Avant | Après | Gain |
-|---|---:|---:|---:|
-| Famille | 87 | 267 | +180 |
-| Cours | 2 | 75 | +73 |
-| Fac | 0 | 149 | +149 |
-| Pro | 0 | 219 | +219 |
-| Publicité | 0 | 99 | +99 |
-| Abonnements | 1 | 9 | +8 |
-| Assurance et Santé | 0 | 13 | +13 |
-| Banque | 0 | 2 | +2 |
-| À vérifier | 1 | 34 | +33 |
-| Perso | 8 | 16 | +8 |
-| canada | 11 | 13 | +2 |
-| CAF | 9 | 10 | +1 |
+## Le tri est terminé
 
-Un même fil peut porter plusieurs libellés, les gains ne s'additionnent donc pas
-en un nombre de fils distincts. L'ordre de grandeur est d'environ 600 fils
-distincts traités dans cette session, en plus des 88 de la session précédente.
-
-## Ce qui est terminé
-
-**Famille.** Requête élargie aux six adresses des parents, épuisée jusqu'au
-dernier fil. `has:nouserlabels` ne renvoie plus rien sur cette requête.
-
-**SENT.** Les 391 fils envoyés ont tous été passés en revue et étiquetés. C'est
-ce balayage qui a fait apparaître les cours envoyés à soi-même, les camarades
-non listés, et la totalité de l'historique de recherche d'emploi.
-
-**Cours.** Les 28 camarades de la passation, plus les 26 découverts, plus les
-notes de cours auto-envoyées.
-
-**Fac.** Université de Toulon, Université de Limoges, Parcoursup, CROUS, CVEC,
-UNICEM, lycées, CNED, AFEV.
-
-**Pro.** Intérim, forage, France Travail, candidatures, employeurs, formation
-Canada. Environ 220 fils.
-
-## Ce qui reste
-
-**Publicité et Abonnements**, soit l'essentiel du volume restant, autour de
-4 000 fils. Le recensement des annonceurs est fait et vérifié, il est dans
-`FILTRES-GMAIL.md`. Ce reliquat se traite en quelques minutes avec sept filtres
-Gmail natifs, pas en heures d'étiquetage fil par fil. C'est d'ailleurs ce que
-recommandait déjà la passation.
-
-Mesurer ce qui reste à tout moment :
+**La totalité de la boîte de réception est étiquetée.** La requête de contrôle
 
 ```
 in:inbox has:nouserlabels
 ```
 
-## Deux décisions qui attendent Tanguy
+ne renvoie plus rien. Plus un seul fil de la boîte de réception n'est sans
+libellé, du plus récent (septembre 2026) au plus ancien (février 2022).
 
-**1. Une catégorie manque.** Une dizaine de fils relèvent d'un engagement
-politique (Rassemblement National Jeunesse, fonction de délégué départemental
-jeunesse et démission de cette fonction, plan d'action, événements). Cela
-n'entre dans aucune des neuf catégories. Ils sont dans À vérifier. Créer un
-libellé dédié, ou les verser dans Perso ?
+Environ **3 100 fils** ont été traités à la main sur les deux sessions, en
+plus des 88 de la session initiale.
 
-**2. Les libellés préexistants se recoupent avec Pro.** `job` (20 fils),
-`pole emploi` (21) et `alternance chaudronnerie recherche` (20) couvrent le même
-terrain que Pro. Rien n'a été fusionné ni supprimé, conformément à la consigne.
-À arbitrer.
+## Compteurs finaux, par libellé
 
-## Le libellé À vérifier, 34 fils
+Chiffres relevés par `list_labels`, en nombre de **fils** (conversations).
 
-Trois familles de cas :
+| Libellé | Fils | Messages |
+|---|---:|---:|
+| Publicité | 1 461 | 1 470 |
+| Abonnements | 1 401 | 1 581 |
+| Pro | 1 050 | 1 353 |
+| À vérifier | 410 | 456 |
+| Fac | 358 | 416 |
+| Banque | 289 | 298 |
+| Famille | 271 | 400 |
+| Assurance et Santé | 121 | 131 |
+| Cours | 76 | 125 |
 
-- **Engagement politique**, une dizaine de fils, voir ci-dessus
-- **Fils sans objet ni aperçu**, contenu uniquement en pièce jointe, impossible
-  à classer sans ouvrir la pièce jointe
-- **Cas sensibles ou isolés** : le CV à Olivier Alemany transféré au père
-  (`195edc9e94737fad`), un échange avec la gendarmerie intitulé « Photo menace
-  Lys » (`1940cb6abf28bb84`), un signalement à la plateforme Yubo
-  (`187e7c6bc7d5b19a`), un envoi à un service de reprographie
-  (`19dbadd03bce6319`)
+Libellés préexistants, inchangés :
+
+| Libellé | Fils |
+|---|---:|
+| pole emploi | 21 |
+| job | 20 |
+| alternance chaudronnerie recherche | 20 |
+| Perso | 16 |
+| canada | 13 |
+| CAF | 10 |
+| administratif | 0 |
+
+La boîte de réception compte 5 077 fils. La somme des colonnes ci-dessus est
+supérieure : un même fil peut porter plusieurs libellés, c'est voulu.
+
+## Comment le balayage a été mené
+
+La boîte a été découpée en partitions natives Gmail, chacune traitée jusqu'à
+épuisement, puis un ratissage final :
+
+1. `in:inbox has:nouserlabels category:promotions` — épuisée
+2. `in:inbox has:nouserlabels category:updates` — épuisée (2026-09 → 2022-06)
+3. `in:inbox has:nouserlabels category:social` — épuisée (2026-09 → 2024-02),
+   quasi exclusivement LinkedIn, Instagram, Facebook, Threads → Abonnements
+4. `in:inbox has:nouserlabels category:forums` — vide
+5. `in:inbox has:nouserlabels` — le reste, épuisé
+
+Détail de la méthode dans `METHODE.md`.
+
+## Deux règles de prudence appliquées partout
+
+**En cas d'hésitation entre Publicité et Abonnements, le fil est allé dans
+Abonnements.** Tanguy envisage de supprimer le lot Publicité : mieux vaut
+garder un prospectus que perdre une facture.
+
+**En cas de doute réel, le fil est allé dans À vérifier**, sans être tranché.
+
+## Trois décisions qui attendent Tanguy
+
+Rien ne sera fusionné, supprimé ni déplacé sans son accord explicite.
+
+**1. Il manque une catégorie « engagement politique ».** Plus de 150 fils
+(Rassemblement National et RN Jeunesse, Patriotes pour l'Europe, Les
+Fédéralistes, Jérôme Sainte-Marie, délégué départemental jeunesse et démission
+de cette fonction, plans d'action, événements). Cela n'entre dans aucune des
+neuf catégories. Tout est garé dans À vérifier. Créer un libellé dédié, ou
+verser dans Perso ?
+
+**2. Il manque une catégorie pour le projet Canada / Québec.** Immigration
+(IRCC, `cic.gc.ca`, `canada.ca`), MIFI, VFS Global, GCKey, Accès Études Québec,
+Up North Immigration, Sûreté du Québec, CSSBJ. Un libellé `canada` existe déjà
+mais ne porte que 13 fils. Faut-il y verser tout ce dossier, aujourd'hui dans
+À vérifier ?
+
+**3. Les libellés préexistants se recoupent avec les nouveaux.** `job`,
+`pole emploi` et `alternance chaudronnerie recherche` couvrent le terrain de
+**Pro**. `CAF` et `administratif` couvrent une partie de ce qui a été garé dans
+**À vérifier**. Rien n'a été fusionné ni supprimé, conformément à la consigne.
+
+## Le libellé À vérifier, 410 fils
+
+À relire avec Tanguy. Il contient, par ordre de volume :
+
+- **Engagement politique**, plus de 150 fils (voir décision 1)
+- **Dossier Canada / Québec**, immigration et études (voir décision 2)
+- **Administratif** : CAF, ANTS, permis de conduire (`interieur.gouv.fr`,
+  stages de récupération de points ECF / Actiroute), Ciclade
+- **Correspondants personnels non identifiés**, vus une ou deux fois, que le
+  seul expéditeur ne permet pas de classer
+- **Cas sensibles ou isolés**, notamment :
+  - `1940cb6abf28bb84` — échange avec la gendarmerie, objet « Photo menace Lys »
+  - `195edc9e94737fad` — CV à Olivier Alemany transféré au père
+  - `187e7c6bc7d5b19a` — signalement à la plateforme Yubo
+  - `19dbadd03bce6319` — envoi à un service de reprographie, contenu non identifié
+- **Fils sans objet ni aperçu**, contenu uniquement en pièce jointe
+
+Une imprécision connue : trois fils de `contact@exchange-college.com` sont dans
+À vérifier alors que les suivants, une fois l'objet lu, sont partis dans **Fac**
+(c'est une école de banque-finance-assurance). À corriger lors de la relecture.
 
 ## Consigne respectée
 
-Rien n'a été supprimé, ni mis à la corbeille, ni marqué comme spam. Aucun
-libellé préexistant n'a été modifié ou supprimé. Aucun message n'a été envoyé.
+Rien n'a été supprimé, mis à la corbeille ou marqué comme spam, **à la seule
+exception des messages que Tanguy a explicitement demandé de supprimer** lors
+de la seconde session. Aucun libellé préexistant n'a été modifié ou supprimé.
+Aucun message n'a été envoyé.
