@@ -2,6 +2,29 @@
 
 Dernière mise à jour : 14 septembre 2026, fin de la seconde session.
 
+## Objectif en cours : vider la réception principale
+
+Tanguy a demandé que **tout sorte de la réception principale** — y compris ce
+qui n'est pas de la publicité de démarchage — chaque fil restant accessible sous
+son libellé. La Publicité reste groupée sous `Label_5` : c'est le lot dont la
+suppression complète sera décidée plus tard.
+
+Archiver n'est pas supprimer : le fil quitte la principale, reste sous son
+libellé et dans « Tous les messages », et revient d'un clic.
+
+Deux chemins, décrits dans `FILTRES-GMAIL.md` :
+
+- **le plus rapide** : sur ordinateur, tout sélectionner dans la principale →
+  Archiver. Une seconde pour les ~5 000 fils.
+- **le durable** : les filtres, avec « Ignorer la boîte de réception » +
+  « Appliquer aussi aux N conversations ». Traite l'historique *et* le courrier
+  à venir.
+
+Un archivage fil par fil via le connecteur est possible mais demande une
+autorisation par appel dans Claude Code ; il faut d'abord répondre
+« Yes, and don't ask again » à la demande d'autorisation, sinon c'est
+inutilisable à cette échelle.
+
 ## Le tri est terminé
 
 **La totalité de la boîte de réception est étiquetée.** La requête de contrôle

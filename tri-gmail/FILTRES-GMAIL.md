@@ -13,17 +13,35 @@ ce dépôt.
 
 ## Mode d'emploi
 
-Dans Gmail, sur ordinateur :
+Dans Gmail, **sur ordinateur** (l'application mobile ne sait pas créer de
+filtres) :
 
 1. Paramètres → **Filtres et adresses bloquées** → *Créer un filtre*
 2. Coller le contenu du bloc dans le champ **De**
-3. *Créer un filtre* → cocher **Appliquer le libellé** et choisir le libellé
-4. Cocher **« Appliquer aussi le filtre aux N conversations correspondantes »**
-   si on veut aussi rattraper d'éventuels fils archivés hors boîte de réception
-5. *Créer un filtre*
+3. *Créer un filtre*, puis cocher **trois** cases :
+   - **Appliquer le libellé** → choisir le libellé indiqué
+   - **Ignorer la boîte de réception (Archiver)** ← c'est celle qui vide la
+     réception principale
+   - **Appliquer aussi le filtre aux N conversations correspondantes** ← c'est
+     celle qui traite tout l'historique déjà reçu, d'un coup
+4. *Créer un filtre*
+
+Compter une minute par filtre. À la fin, la réception principale est vide et le
+courrier futur ne s'y arrêtera plus : il arrivera directement rangé sous son
+libellé.
 
 Gmail limite la longueur d'un critère. Si un bloc est refusé, le couper en deux
 filtres qui posent le même libellé, cela revient au même.
+
+### Vider la principale en une fois, sans attendre les filtres
+
+Sur ordinateur, dans la boîte de réception : cocher la case de sélection en haut
+à gauche, cliquer sur **« Sélectionner les N conversations »**, puis sur
+l'icône **Archiver**. Tout sort de la principale en une seconde. Rien n'est
+supprimé : chaque fil reste sous son libellé et dans « Tous les messages ».
+
+C'est réversible : pour en faire revenir un, l'ouvrir et cliquer sur
+**Déplacer vers la boîte de réception**.
 
 ## Règle de prudence appliquée
 
