@@ -1,0 +1,537 @@
+<title>Registre d'effacement RGPD</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Barre de commande collante au-dessus d'une colonne unique de fiches-dossier ; liseré gauche = donnée sensible */
+:root{
+  --paper:#eef0f3; --surface:#ffffff; --surface-2:#f7f8fa;
+  --ink:#111418; --muted:#5b6570; --line:#dbe0e6;
+  --accent:#24406b; --accent-soft:#e6ecf5;
+  --keep:#1b6b4c; --keep-soft:#e2f0e9;
+  --erase:#a02d24; --erase-soft:#f8e6e4;
+  --custom:#8a5a10; --custom-soft:#f7eedb;
+  --later:#6b7480; --later-soft:#eceff2;
+  --sens:#a02d24;
+  --display:"Newsreader",Georgia,serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#101317; --surface:#181c22; --surface-2:#1f242b;
+  --ink:#e7eaee; --muted:#98a2ae; --line:#2b323b;
+  --accent:#8bb0e0; --accent-soft:#1c2a3d;
+  --keep:#5cc196; --keep-soft:#142a22;
+  --erase:#ee8478; --erase-soft:#331917;
+  --custom:#dfae57; --custom-soft:#2c2413;
+  --later:#8d97a3; --later-soft:#232830;
+  --sens:#ee8478;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#101317; --surface:#181c22; --surface-2:#1f242b;
+  --ink:#e7eaee; --muted:#98a2ae; --line:#2b323b;
+  --accent:#8bb0e0; --accent-soft:#1c2a3d;
+  --keep:#5cc196; --keep-soft:#142a22;
+  --erase:#ee8478; --erase-soft:#331917;
+  --custom:#dfae57; --custom-soft:#2c2413;
+  --later:#8d97a3; --later-soft:#232830;
+  --sens:#ee8478;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.5;margin:0}
+.wrap{max-width:60rem;margin:0 auto;padding-inline:16px;padding-block:0 4rem}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{color:var(--muted);font-size:.95rem;max-width:42rem;margin:.6rem 0 0}
+header.top{padding-block:1.8rem 1.2rem}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line);padding-block:.7rem;margin-bottom:1.2rem}
+.counts{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.count{display:flex;align-items:baseline;gap:.35rem;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:.3rem .55rem;font-size:.75rem;color:var(--muted)}
+.count b{font-family:var(--mono);font-size:.95rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.count.k b{color:var(--keep)} .count.e b{color:var(--erase)} .count.c b{color:var(--custom)}
+#q{width:100%;font-family:var(--body);font-size:.95rem;padding:.55rem .7rem;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--ink)}
+#q:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
+select{font-family:var(--body);font-size:.8rem;padding:.35rem .5rem;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--ink);min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.9rem 1rem;margin-bottom:.7rem;position:relative}
+.card.sensible{border-left:3px solid var(--sens)}
+.card.prot{background:var(--surface-2)}
+.hd{display:flex;flex-wrap:wrap;gap:.5rem;align-items:baseline;justify-content:space-between}
+.nm{font-family:var(--display);font-size:1.12rem;font-weight:600;letter-spacing:-.005em}
+.dm{font-family:var(--mono);font-size:.76rem;color:var(--muted);word-break:break-all}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;margin:.55rem 0}
+.chip{font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;padding:.2rem .42rem;border-radius:2px;background:var(--later-soft);color:var(--muted);white-space:nowrap}
+.chip.cert-Élevée{background:var(--accent-soft);color:var(--accent)}
+.chip.warn{background:var(--erase-soft);color:var(--erase)}
+.chip.shield{background:var(--keep-soft);color:var(--keep)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.5rem .9rem;font-size:.82rem;margin:.55rem 0}
+.meta div{min-width:0}
+.meta dt{color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin:0}
+.meta dd{margin:.1rem 0 0}
+.cons{font-size:.84rem;color:var(--muted);margin:.5rem 0 0;padding-left:.7rem;border-left:2px solid var(--line)}
+.dec{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem}
+.dec button{font-family:var(--body);font-size:.8rem;font-weight:600;padding:.42rem .6rem;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--muted);cursor:pointer}
+.dec button:hover{border-color:var(--accent)}
+.dec button[aria-pressed="true"]{border-color:currentColor}
+.dec button[data-d="keep"][aria-pressed="true"]{background:var(--keep-soft);color:var(--keep)}
+.dec button[data-d="erase"][aria-pressed="true"]{background:var(--erase-soft);color:var(--erase)}
+.dec button[data-d="custom"][aria-pressed="true"]{background:var(--custom-soft);color:var(--custom)}
+.dec button[data-d="later"][aria-pressed="true"]{background:var(--later-soft);color:var(--ink)}
+.dec button:disabled{opacity:.45;cursor:not-allowed}
+.row2{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.6rem}
+.lnk{background:none;border:none;color:var(--accent);font-family:var(--body);font-size:.78rem;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+.note{width:100%;font-family:var(--body);font-size:.85rem;padding:.45rem .55rem;border:1px solid var(--line);border-radius:3px;background:var(--surface-2);color:var(--ink);margin-top:.5rem;resize:vertical;min-height:2.4rem}
+.proof{margin-top:.55rem;padding:.55rem .65rem;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;font-size:.82rem}
+.proof p{margin:0 0 .35rem}
+.proof p:last-child{margin:0}
+.proof code{font-family:var(--mono);font-size:.76rem}
+.state{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.8rem 1rem;margin-bottom:1.2rem}
+.group h2,.actions h2{font-family:var(--display);font-size:1rem;font-weight:600;margin:0 0 .4rem}
+.group p{font-size:.8rem;color:var(--muted);margin:0 0 .55rem}
+.group .dec button{font-size:.78rem}
+.actions{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1rem;margin-top:1.4rem}
+.actions .dec{margin-top:.2rem}
+.actions .dec button{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+:root[data-theme="dark"] .actions .dec button,
+.actions .dec button{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .actions .dec button{color:#0e1116}}
+:root[data-theme="dark"] .actions .dec button{color:#0e1116}
+#out{width:100%;font-family:var(--mono);font-size:.72rem;min-height:9rem;margin-top:.7rem;padding:.55rem;border:1px solid var(--line);border-radius:3px;background:var(--surface-2);color:var(--ink);white-space:pre;overflow-x:auto}
+#status{font-size:.78rem;color:var(--muted);margin-top:.5rem}
+.empty{text-align:center;color:var(--muted);font-size:.9rem;padding:2rem 1rem;border:1px dashed var(--line);border-radius:4px}
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>Registre d'effacement</h1>
+  <p class="lede">Un service par fiche. Rien ne part sans ta décision, et « décider plus tard » ne vaut pas autorisation. Les services protégés sont verrouillés sur <b>Conserver</b> : il faut les déverrouiller explicitement pour les changer.</p>
+</header>
+
+<div class="bar">
+  <div class="counts" id="counts"></div>
+  <input id="q" type="search" placeholder="Chercher un service, un domaine…" autocomplete="off">
+  <div class="filters">
+    <select id="fcat" aria-label="Catégorie"></select>
+    <select id="frel" aria-label="Type de relation"></select>
+    <select id="fdec" aria-label="Décision"></select>
+    <select id="fsens" aria-label="Sensibilité"></select>
+  </div>
+</div>
+
+<div class="group">
+  <h2>Marquage groupé</h2>
+  <p id="gscope">—</p>
+  <div class="dec">
+    <button type="button" data-g="erase">Demander l'effacement</button>
+    <button type="button" data-g="later">Décider plus tard</button>
+  </div>
+</div>
+
+<div id="list"></div>
+
+<div class="actions">
+  <h2>Mes choix</h2>
+  <p style="font-size:.82rem;color:var(--muted);margin:0 0 .6rem">Tes décisions sont enregistrées automatiquement et je peux les relire directement. L'export ci-dessous est le filet de sécurité : si l'enregistrement échoue, copie-le et colle-le moi.</p>
+  <div class="dec">
+    <button type="button" id="prep">Préparer le récapitulatif</button>
+    <button type="button" id="copy">Copier mes choix (JSON)</button>
+  </div>
+  <textarea id="out" readonly aria-label="Export de mes choix" placeholder="Le récapitulatif ou le JSON s'affichera ici."></textarea>
+  <p id="status">Connexion au stockage…</p>
+</div>
+
+<footer>
+  Inventaire établi à partir de la boîte <span class="dm">lystanguy@gmail.com</span>, tout l'historique accessible de février 2022 à septembre 2026, archives comprises. Le liseré rouge marque une catégorie particulière au sens du RGPD (santé, opinions politiques, vie sexuelle) ou une donnée d'identité. Un accusé de réception ne prouve pas l'effacement.
+</footer>
+</div>
+<script>
+const MAIL="lystanguy@gmail.com";
+// prot = protégé (Conserver verrouillé) ; sens = catégorie particulière RGPD ou donnée d'identité
+const SERVICES=[
+// ---------- PROTÉGÉS ----------
+{id:"anthropic",nom:"Anthropic / Claude",dom:"anthropic.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-14",act:"Abonnement payant en cours",conv:"Historique de conversations Claude",cons:"Perte de tout l'historique Claude et de l'accès à Claude Code.",preuve:"Facture du 14/09/2026 (invoice+statements@mail.anthropic.com), mails de connexion.",prot:1,sens:""},
+{id:"openai",nom:"OpenAI / ChatGPT",dom:"openai.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Moyenne",date:"2026",act:"Service utilisé ; abonnement à confirmer",conv:"Historique de conversations ChatGPT",cons:"Perte de l'historique de conversations.",preuve:"Mails de email.openai.com. Je n'ai pas de facture sous les yeux : dis-moi si l'abonnement est payant.",prot:1,sens:""},
+{id:"netlify",nom:"Netlify",dom:"netlify.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-24",act:"Équipe lystanguy-gif, crédits consommés dans le cycle en cours",conv:"—",cons:"Tes sites déployés tombent.",preuve:"Alerte de consommation de crédits (50 % de 1000) du 15/09/2026, mails d'équipe du 24/09/2026.",prot:1,sens:""},
+{id:"supabase",nom:"Supabase",dom:"supabase.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-14",act:"Projets actifs",conv:"—",cons:"Perte des bases de données de tes projets.",preuve:"Mails de bienvenue et de sécurité. Alias utilisé : lystanguy+cctest@gmail.com (13/06/2026).",prot:1,sens:""},
+{id:"github",nom:"GitHub",dom:"github.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Dépôt coach-tanguy actif",conv:"—",cons:"Perte de ton code et de ton historique de commits.",preuve:"Notifications github.com ; compte lystanguy-gif.",prot:1,sens:""},
+{id:"google",nom:"Google",dom:"google.com",cat:"IA & dev",rel:"Compte principal",cert:"Élevée",date:"2026-09-18",act:"C'est l'adresse elle-même",conv:"Gmail, Drive, Agenda",cons:"Supprimer ce compte supprime la boîte mail qui sert de base à tout ce travail.",preuve:"Alertes de sécurité et de partage de données (dernière : connexion à Microsoft Copilot le 18/09/2026).",prot:1,sens:""},
+{id:"apple",nom:"Apple",dom:"apple.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-17",act:"Achats in-app et abonnements en cours",conv:"iMessage, iCloud",cons:"Perte des achats numériques et du contenu iCloud.",preuve:"Reçu Apple du 16/09/2026 (Plaud AI Note Taker, annuel).",prot:1,sens:""},
+{id:"plaud",nom:"Plaud",dom:"plaud.ai",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Abonnement annuel facturé via Apple",conv:"Enregistrements et transcriptions",cons:"Perte des transcriptions ; l'abonnement se résilie côté Apple, pas côté Plaud.",preuve:"Reçu Apple du 16/09/2026 ; mails de bienvenue Plaud.",prot:1,sens:""},
+{id:"elevenlabs",nom:"ElevenLabs",dom:"elevenlabs.io",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Abonnement facturé via Stripe",conv:"Voix enregistrées",cons:"Perte des voix et projets audio.",preuve:"Reçu Stripe nº 2773-5014-5047 du 18/09/2026.",prot:1,sens:""},
+{id:"microsoft",nom:"Microsoft",dom:"microsoft.com",cat:"IA & dev",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Connexion à Copilot le 18/09/2026",conv:"Teams, Outlook",cons:"Perte de l'accès Office / Copilot.",preuve:"Réinitialisations de mot de passe (2023), alertes accountprotection, Copilot.",prot:1,sens:""},
+{id:"cepac",nom:"Caisse d'Épargne CEPAC",dom:"caisse-epargne.fr",cat:"Banque & paiement",rel:"Compte bancaire",cert:"Élevée",date:"2026-09-17",act:"Relevé de compte du 17/09/2026",conv:"—",cons:"Un effacement est impossible tant que le compte vit ; la loi impose la conservation comptable.",preuve:"Relevés CEPAC, conseillers nominatifs (Cerdan, Jondreville).",prot:1,sens:"Financier"},
+{id:"alma",nom:"Alma",dom:"getalma.eu",cat:"Banque & paiement",rel:"Crédit en cours",cert:"Élevée",date:"2026-09-18",act:"Dernier prélèvement Bonnegueule de 369,33 € le 18/09/2026",conv:"—",cons:"Crédit fractionné : conservation légale obligatoire.",preuve:"Mail « Dernier paiement effectué — Bonnegueule » du 18/09/2026.",prot:1,sens:"Financier"},
+{id:"paypal",nom:"PayPal",dom:"paypal.fr",cat:"Banque & paiement",rel:"Compte confirmé",cert:"Élevée",date:"2024-10-10",act:"Moyen de paiement",conv:"—",cons:"Historique de transactions conservé par obligation légale.",preuve:"Réinitialisation de mot de passe du 10/10/2024.",prot:1,sens:"Financier"},
+{id:"stripe",nom:"Stripe",dom:"stripe.com",cat:"Banque & paiement",rel:"Reçus de paiement",cert:"Élevée",date:"2026-09-18",act:"Intermédiaire de tes abonnements",conv:"—",cons:"Stripe agit pour le compte des marchands ; la demande doit aller au marchand.",preuve:"Reçus ElevenLabs.",prot:1,sens:"Financier"},
+{id:"link",nom:"Link (Stripe)",dom:"link.com",cat:"Banque & paiement",rel:"Compte confirmé",cert:"Moyenne",date:"2026-06-13",act:"Portefeuille de paiement",conv:"—",cons:"Cartes enregistrées perdues.",preuve:"Mail de vérification du 13/06/2026.",prot:1,sens:"Financier"},
+{id:"ameli",nom:"Ameli / Assurance Maladie",dom:"ameli.fr",cat:"Santé",rel:"Compte obligatoire",cert:"Élevée",date:"2026",act:"Droits en cours",conv:"—",cons:"Aucun effacement possible : mission de service public.",preuve:"Mails ameli.fr et ces.ameli.fr.",prot:1,sens:"Santé"},
+{id:"doctolib",nom:"Doctolib",dom:"doctolib.fr",cat:"Santé",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Rendez-vous médicaux",conv:"Messagerie avec les praticiens",cons:"Perte de l'historique de rendez-vous ; les praticiens gardent leur dossier.",preuve:"Confirmations de rendez-vous.",prot:1,sens:"Santé"},
+{id:"mma",nom:"MMA",dom:"mma.fr",cat:"Assurance",rel:"Contrat en cours",cert:"Élevée",date:"2025-07-31",act:"Contrat d'assurance",conv:"—",cons:"Conservation légale pendant la durée du contrat et après.",preuve:"Mails coteclients.mma.fr, contact-mma.fr, cabinet Sarton.",prot:1,sens:""},
+{id:"mif",nom:"MIF",dom:"mifassur.com",cat:"Assurance",rel:"Contrat en cours",cert:"Élevée",date:"2026-09-15",act:"Assurance-vie réelle + prospection",conv:"—",cons:"Le contrat impose la conservation ; en revanche la prospection peut cesser (art. 21).",preuve:"Webinaire retraite du 15/09/2026 ; espace personnel.",prot:1,sens:"Financier"},
+{id:"probtp",nom:"PRO BTP",dom:"probtp.com",cat:"Assurance",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Prévoyance liée à l'intérim BTP",conv:"—",cons:"Droits sociaux : conservation obligatoire.",preuve:"Mails probtp.com et mailgestion.",prot:1,sens:""},
+{id:"apicil",nom:"APICIL",dom:"apicil.com",cat:"Assurance",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Prévoyance",conv:"—",cons:"Droits sociaux.",preuve:"Mails apicil.com.",prot:1,sens:""},
+{id:"univtln",nom:"Université de Toulon",dom:"univ-tln.fr",cat:"Études",rel:"Inscription en cours",cert:"Élevée",date:"2026-09-11",act:"Scolarité active ; adresse tanguy-lys@etud.univ-tln.fr",conv:"Messagerie universitaire",cons:"Impossible pendant les études ; dossier scolaire à conservation longue.",preuve:"Mail d'Alicia Parisot du 11/09/2026 ; usagesnum@univ-tln.fr.",prot:1,sens:""},
+{id:"crous",nom:"CROUS / Mes Services Étudiants",dom:"messervices.etudiant.gouv.fr",cat:"Études",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Bourse et logement",conv:"—",cons:"Perte des droits à bourse.",preuve:"Confirmations de compte (06/02/2023), CVEC, lescrous.fr.",prot:1,sens:""},
+{id:"izly",nom:"Izly",dom:"izly.fr",cat:"Études",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Restauration universitaire, solde possible",conv:"—",cons:"Un solde non utilisé serait perdu : le récupérer avant.",preuve:"Mails izly.fr.",prot:1,sens:"Financier"},
+{id:"francetravail",nom:"France Travail",dom:"francetravail.fr",cat:"Administration",rel:"Compte obligatoire",cert:"Élevée",date:"2026",act:"Droits et inscription",conv:"Messagerie avec le conseiller",cons:"Aucun effacement : mission de service public.",preuve:"Très nombreux mails francetravail.fr et pole-emploi.fr.",prot:1,sens:""},
+{id:"ulys",nom:"Ulys / Vinci Autoroutes",dom:"ulys.com",cat:"Transport",rel:"Abonnement actif",cert:"Élevée",date:"2026-09-12",act:"Badge télépéage en service",conv:"—",cons:"Badge désactivé, facturation en cours interrompue.",preuve:"Mails clients.ulys.com et facturation vinci-autoroutes.com.",prot:1,sens:""},
+{id:"ledauphine",nom:"Le Dauphiné Libéré",dom:"ledauphine.com",cat:"Médias",rel:"Abonnement payant",cert:"Moyenne",date:"2025-06-16",act:"Abonnement presse",conv:"—",cons:"Résiliation ≠ effacement : à traiter séparément.",preuve:"Mails email.ledauphine.com.",prot:1,sens:""},
+{id:"helloasso",nom:"HelloAsso",dom:"helloasso.com",cat:"Associations",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-17",act:"Adhésion payée à « Tous en droit nouvelle génération »",conv:"—",cons:"Perte des reçus fiscaux et de l'adhésion en cours.",preuve:"Paiement et activation de compte du 17/09/2026.",prot:1,sens:"Financier"},
+
+// ---------- RENCONTRES / VIE PRIVÉE ----------
+{id:"tinder",nom:"Tinder",dom:"tinder.com",cat:"Rencontres",rel:"Compte confirmé",cert:"Élevée",date:"2025-07-30",act:"Aucune trace depuis juillet 2025",conv:"Oui — matchs et messages privés",cons:"Fermer le compte efface le profil et les matchs, mais tes messages peuvent rester visibles chez tes interlocuteurs. Vérifier l'ordre : effacer les conversations depuis le compte AVANT de le fermer.",preuve:"Mail de vérification gotinder.com du 30/07/2025 ; mails mail.tinder.com.",prot:0,sens:"Vie privée"},
+{id:"grindr",nom:"Grindr",dom:"grindr.com",cat:"Rencontres",rel:"Piste",cert:"Faible",date:"—",act:"Inconnue",conv:"Oui — messages privés probables",cons:"Aucune preuve mail : tu m'as demandé de supprimer tous ces mails et c'est fait, donc la trace a disparu de la boîte. Le compte, lui, peut très bien exister encore côté Grindr. À confirmer par toi.",preuve:"Pas de preuve dans la boîte : les messages ont été supprimés à ta demande lors d'une session précédente.",prot:0,sens:"Vie privée"},
+{id:"yubo",nom:"Yubo",dom:"yubo.live",cat:"Rencontres",rel:"Compte probable",cert:"Moyenne",date:"2023-12",act:"Ancien compte, aucune trace récente",conv:"Oui — messages et lives",cons:"Ancien compte créé jeune : c'est typiquement le cas où l'effacement a le plus de valeur.",preuve:"Fil de signalement à la plateforme Yubo (187e7c6bc7d5b19a) et mails de 2023-2024.",prot:0,sens:"Vie privée"},
+
+// ---------- RÉSEAUX SOCIAUX ----------
+{id:"instagram",nom:"Instagram",dom:"instagram.com",cat:"Réseaux sociaux",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Notifications régulières",conv:"Oui — messages directs",cons:"Meta lie Instagram, Facebook et Threads : fermer l'un peut affecter les autres. Les DM restent chez tes destinataires.",preuve:"Vérification de compte du 19/11/2022 ; notifications mail.instagram.com.",prot:0,sens:"Vie privée"},
+{id:"facebook",nom:"Facebook",dom:"facebook.com",cat:"Réseaux sociaux",rel:"Compte probable",cert:"Moyenne",date:"2026",act:"Notifications facebookmail",conv:"Oui — Messenger",cons:"Compte central Meta : vérifier ce qui dépend de « Se connecter avec Facebook » avant de fermer.",preuve:"Notifications facebookmail.com, toutes variantes.",prot:0,sens:"Vie privée"},
+{id:"threads",nom:"Threads",dom:"threads.net",cat:"Réseaux sociaux",rel:"Compte probable",cert:"Moyenne",date:"2026",act:"Notifications",conv:"Oui",cons:"Lié au compte Instagram : Threads seul peut se supprimer sans Instagram, la procédure a changé plusieurs fois — à vérifier avant d'agir.",preuve:"Notifications mail.threads.net.",prot:0,sens:"Vie privée"},
+{id:"tiktok",nom:"TikTok",dom:"tiktok.com",cat:"Réseaux sociaux",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-16",act:"Notifications actives",conv:"Oui — messages privés",cons:"Suppression définitive après un délai de réflexion de 30 jours.",preuve:"Notifications service.tiktok.com et update.tiktok.com jusqu'au 16/09/2026.",prot:0,sens:"Vie privée"},
+{id:"linkedin",nom:"LinkedIn",dom:"linkedin.com",cat:"Réseaux sociaux",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-17",act:"Notifications quotidiennes",conv:"Oui — messagerie",cons:"Profil professionnel : à peser avec ta recherche d'emploi. Une vérification de compte a eu lieu en 2024.",preuve:"security-noreply@linkedin.com (22/11/2024) ; notifications jusqu'au 17/09/2026.",prot:0,sens:""},
+{id:"twitch",nom:"Twitch",dom:"twitch.tv",cat:"Réseaux sociaux",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Notifications",conv:"Oui — chat et messages",cons:"Compte lié à Amazon selon la configuration.",preuve:"Notifications twitch.tv.",prot:0,sens:""},
+{id:"monnett",nom:"Monnett",dom:"monnett.social",cat:"Réseaux sociaux",rel:"Compte confirmé",cert:"Moyenne",date:"2026-02-09",act:"Activation en février 2026, plus de trace depuis",conv:"Possible",cons:"Petit service : vérifier qu'un contact DPO existe réellement.",preuve:"Activation de compte du 09/02/2026 ; welcome@monnett.social.",prot:0,sens:""},
+
+// ---------- POLITIQUE ----------
+{id:"rn",nom:"Rassemblement National",dom:"rassemblementnational.fr",cat:"Politique",rel:"Compte confirmé",cert:"Élevée",date:"2025-02-03",act:"Adhésion et mandat de délégué départemental jeunesse, puis démission",conv:"Échanges avec des responsables",cons:"Les opinions politiques sont une catégorie particulière (art. 9 RGPD) : l'effacement a ici une valeur forte. Plus de 150 fils dans ta boîte. Vérifier séparément le fichier des adhérents et celui de la formation.",preuve:"rnformations@, r-n.info, jordan.bardella@, tim.bouzon@, clement.vanheuverswyn@, adhésion (189727c3131a5255).",prot:0,sens:"Opinions politiques"},
+{id:"patriotes",nom:"Patriotes pour l'Europe",dom:"patriotespourleurope.eu",cat:"Politique",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Mails de groupe parlementaire",conv:"Possible",cons:"Catégorie particulière (art. 9).",preuve:"Mails patriotespourleurope.",prot:0,sens:"Opinions politiques"},
+{id:"federalistes",nom:"Les Fédéralistes",dom:"lesfederalistes.eu",cat:"Politique",rel:"Newsletter",cert:"Moyenne",date:"2025",act:"Mails d'Yves Gernigon",conv:"—",cons:"Catégorie particulière (art. 9).",preuve:"yves.gernigon@lesfederalistes.eu.",prot:0,sens:"Opinions politiques"},
+{id:"hubspotrn",nom:"HubSpot (via contactrn05)",dom:"hubspot.com",cat:"Politique",rel:"Sous-traitant",cert:"Moyenne",date:"2025",act:"Outil d'emailing utilisé par la fédération RN 05",conv:"—",cons:"HubSpot est sous-traitant : la demande doit d'abord aller au responsable de traitement (la fédération).",preuve:"contactrn05 via hubspotstarter, notifications hubspot.",prot:0,sens:"Opinions politiques"},
+
+// ---------- SANTÉ ----------
+{id:"qare",nom:"Qare",dom:"qare.fr",cat:"Santé",rel:"Compte confirmé",cert:"Moyenne",date:"2026-09-17",act:"Newsletter active, consultations passées",conv:"Échanges avec des médecins",cons:"Données de santé (art. 9). Les comptes rendus médicaux ont une durée de conservation légale propre.",preuve:"Newsletter news.qare.fr ; mails de consultation.",prot:0,sens:"Santé"},
+{id:"medadom",nom:"Medadom",dom:"medadom.com",cat:"Santé",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Téléconsultation",conv:"Comptes rendus",cons:"Données de santé (art. 9).",preuve:"Mails medadom.com.",prot:0,sens:"Santé"},
+{id:"inovie",nom:"Inovie",dom:"inovie.fr",cat:"Santé",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Résultats d'analyses",conv:"Résultats biologiques",cons:"Données de santé : conservation légale des résultats de laboratoire.",preuve:"inovie.fr, labosinovie.fr, votreavis.",prot:0,sens:"Santé"},
+{id:"kalilab",nom:"Kalilab",dom:"kalilab.fr",cat:"Santé",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Résultats d'analyses",conv:"Résultats biologiques",cons:"Données de santé (art. 9).",preuve:"Mails kalilab.fr.",prot:0,sens:"Santé"},
+{id:"eurofins",nom:"Eurofins Biologie",dom:"eurofins.fr",cat:"Santé",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Résultats d'analyses",conv:"Résultats biologiques",cons:"Données de santé (art. 9).",preuve:"Mails eurofins biologie.",prot:0,sens:"Santé"},
+{id:"mesanalyses",nom:"Mes Analyses",dom:"mesanalyses.fr",cat:"Santé",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Portail de résultats",conv:"Résultats biologiques",cons:"Données de santé (art. 9).",preuve:"Mails mesanalyses.fr.",prot:0,sens:"Santé"},
+{id:"lifen",nom:"Lifen",dom:"lifen.fr",cat:"Santé",rel:"Sous-traitant",cert:"Moyenne",date:"2025",act:"Transport de documents médicaux",conv:"Documents médicaux",cons:"Lifen agit pour le compte de professionnels de santé : la demande doit aller au praticien.",preuve:"Mails lifen.fr.",prot:0,sens:"Santé"},
+{id:"rdvasos",nom:"RDV ASOS",dom:"rdvasos.fr",cat:"Santé",rel:"Compte probable",cert:"Faible",date:"2024",act:"Prise de rendez-vous",conv:"—",cons:"Données de santé (art. 9).",preuve:"Mails rdvasos.fr.",prot:0,sens:"Santé"},
+{id:"medispace",nom:"Medispace",dom:"medispace.fr",cat:"Santé",rel:"Compte probable",cert:"Faible",date:"2024",act:"Plateforme médicale",conv:"—",cons:"Données de santé (art. 9).",preuve:"Mails medispace.fr.",prot:0,sens:"Santé"},
+{id:"btpst",nom:"BTP Santé au Travail",dom:"btpst.fr",cat:"Santé",rel:"Compte probable",cert:"Moyenne",date:"2023",act:"Visites médicales d'intérim",conv:"Fiches d'aptitude",cons:"Médecine du travail : conservation obligatoire, l'effacement sera refusé.",preuve:"Fiches de visite médicale (18ba3cf1efc6a3df).",prot:0,sens:"Santé"},
+{id:"giropharm",nom:"Giropharm",dom:"giropharm.fr",cat:"Santé",rel:"Programme de fidélité",cert:"Moyenne",date:"2025-11-06",act:"Carte de fidélité pharmacie",conv:"—",cons:"Un historique d'achats en pharmacie peut révéler des données de santé.",preuve:"privileges@macarte.giropharm.fr, bienvenue du 06/11/2025.",prot:0,sens:"Santé"},
+
+// ---------- IMMIGRATION ----------
+{id:"ircc",nom:"IRCC / Canada.ca",dom:"canada.ca",cat:"Immigration",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Dossier d'immigration",conv:"Correspondance officielle",cons:"Données d'identité et d'immigration. Un État étranger n'est pas soumis au RGPD : c'est la loi canadienne sur la protection des renseignements personnels qui s'applique, et un dossier ouvert ne s'efface pas.",preuve:"cic.gc.ca, canada.ca/ircc.",prot:0,sens:"Identité"},
+{id:"mifi",nom:"MIFI Québec",dom:"mifi.gouv.qc.ca",cat:"Immigration",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Dossier d'immigration Québec",conv:"Correspondance officielle",cons:"Loi québécoise, pas RGPD. Dossier administratif à conservation longue.",preuve:"Mails mifi.gouv.qc.ca.",prot:0,sens:"Identité"},
+{id:"vfs",nom:"VFS Global",dom:"vfsglobal.com",cat:"Immigration",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Prestataire de visas — biométrie possible",conv:"—",cons:"Prestataire privé qui manipule pièces d'identité et biométrie : c'est ici que l'effacement a le plus d'intérêt. Société établie hors UE, invoquer le RGPD reste possible si le traitement cible l'UE.",preuve:"vfsglobal.com, vfshelpline.",prot:0,sens:"Identité"},
+{id:"gckey",nom:"GCKey",dom:"clegc-gckey.gc.ca",cat:"Immigration",rel:"Identifiant d'accès",cert:"Moyenne",date:"2025",act:"Clé d'accès aux services canadiens",conv:"—",cons:"Supprimer la clé bloque l'accès à ton dossier d'immigration.",preuve:"Mails clegc-gckey.gc.ca.",prot:0,sens:"Identité"},
+{id:"aeq",nom:"Accès Études Québec",dom:"crmaeqatq.ca",cat:"Immigration",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Candidature d'études au Québec",conv:"Correspondance",cons:"Dossier de candidature ; loi québécoise.",preuve:"Mails crmaeqatq.ca.",prot:0,sens:"Identité"},
+{id:"upnorth",nom:"Up North Immigration",dom:"upnorthimmigration.com",cat:"Immigration",rel:"Compte probable",cert:"Moyenne",date:"2023-12",act:"Cabinet de conseil privé",conv:"Échanges de dossier",cons:"Cabinet privé détenant un dossier d'immigration complet : bon candidat à l'effacement.",preuve:"Mail du 11/12/2023 (18c2e8bd2fbf29a7).",prot:0,sens:"Identité"},
+{id:"suretequebec",nom:"Sûreté du Québec",dom:"surete.qc.ca",cat:"Immigration",rel:"Demande officielle",cert:"Moyenne",date:"2025",act:"Vraisemblablement un certificat de police",conv:"—",cons:"Autorité de police : l'effacement sera refusé.",preuve:"Mails surete.qc.ca.",prot:0,sens:"Identité"},
+
+// ---------- EMPLOI / INTÉRIM ----------
+{id:"jobleads",nom:"JobLeads",dom:"jobleads.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2026",act:"Alertes emploi actives",conv:"—",cons:"CV et profil professionnel détenus par un service payant : bon candidat à l'effacement.",preuve:"Mails jobleads.com, careerservice.",prot:0,sens:""},
+{id:"hellowork",nom:"HelloWork",dom:"hellowork.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Alerte emploi reçue le 18/09/2026",conv:"—",cons:"CV en ligne diffusé aux recruteurs.",preuve:"alerte@emails.hellowork.com ; bienvenue du 31/07/2023.",prot:0,sens:""},
+{id:"jooble",nom:"Jooble",dom:"jooble.org",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-16",act:"Alertes actives",conv:"—",cons:"Agrégateur : profil et historique de recherche.",preuve:"subscribe@fr.jooble.org.",prot:0,sens:""},
+{id:"jobijoba",nom:"JobiJoba",dom:"jobijoba.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2023-11-16",act:"Aucune trace récente",conv:"—",cons:"Ancien compte avec CV : bon candidat.",preuve:"Confirmation du 16/11/2023.",prot:0,sens:""},
+{id:"jobrapido",nom:"Jobrapido",dom:"jobrapido.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2023-11-16",act:"Aucune trace récente",conv:"—",cons:"Ancien compte avec CV.",preuve:"alert@jobrapidoalert.com du 16/11/2023.",prot:0,sens:""},
+{id:"lesjeudis",nom:"LesJeudis",dom:"lesjeudis.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Compte transféré, mot de passe à renouveler",conv:"—",cons:"Le compte vient d'être migré vers un autre opérateur : demander qui est désormais responsable du traitement.",preuve:"« Trois choses ont changé sur votre compte LesJeudis », 18/09/2026.",prot:0,sens:""},
+{id:"indeed",nom:"Indeed",dom:"indeed.com",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Alertes",conv:"Messagerie avec recruteurs",cons:"CV public possible.",preuve:"Mails indeed.com.",prot:0,sens:""},
+{id:"talentcom",nom:"Talent.com",dom:"talent.com",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Alertes",conv:"—",cons:"Profil et CV.",preuve:"Mails talent.com.",prot:0,sens:""},
+{id:"meteojob",nom:"Meteojob",dom:"meteojob.com",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Aucune trace récente",conv:"—",cons:"CV et tests.",preuve:"Mails meteojob.com.",prot:0,sens:""},
+{id:"bebee",nom:"beBee",dom:"bebee.com",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Prospection surtout",conv:"—",cons:"Profil professionnel.",preuve:"Mails bebee.com.",prot:0,sens:""},
+{id:"taleez",nom:"Taleez",dom:"taleez.com",cat:"Emploi & intérim",rel:"Sous-traitant ATS",cert:"Moyenne",date:"2025-04-10",act:"Candidatures déposées",conv:"—",cons:"Taleez héberge pour des employeurs : la demande doit aller à chaque employeur, ou à Taleez pour le compte candidat.",preuve:"no-reply@taleez.com (16/02/2023, 10/04/2025).",prot:0,sens:""},
+{id:"softy",nom:"Softy / Genesis RH",dom:"softy.pro",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-17",act:"Genesis RH propose lui-même la suppression de tes données",conv:"—",cons:"Ils t'ont écrit que ta candidature a bientôt deux ans et proposent de supprimer ton espace : c'est le dossier le plus simple à traiter.",preuve:"« Genesis RH — Suppression de vos données », 17/09/2026 ; bourgoin@genesisrh.fr (18/10/2024).",prot:0,sens:""},
+{id:"talentsoft",nom:"Talentsoft",dom:"talent-soft.com",cat:"Emploi & intérim",rel:"Sous-traitant ATS",cert:"Élevée",date:"2026-09-11",act:"Espaces candidats chez Orano, Groupama, Framatome, EDF, ANDRA, Vygon",conv:"—",cons:"Un espace candidat par employeur : chaque employeur est responsable de traitement. À traiter employeur par employeur.",preuve:"myhr-noreply@talent-soft.com du 11/09/2026 et variantes.",prot:0,sens:""},
+{id:"profilsorg",nom:"Profils.org (Vinci, Safran)",dom:"profils.org",cat:"Emploi & intérim",rel:"Sous-traitant ATS",cert:"Moyenne",date:"2025",act:"Espaces candidats Vinci et Safran",conv:"—",cons:"Demande à adresser à Vinci et Safran séparément.",preuve:"Mails profils.org.",prot:0,sens:""},
+{id:"proman",nom:"Proman",dom:"proman-interim.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Agence d'intérim, missions passées",conv:"—",cons:"Un contrat de mission impose une conservation légale (paie, URSSAF). L'effacement portera sur le profil candidat, pas sur la paie.",preuve:"gap@, limoges@, myproman, mypixid.",prot:0,sens:"Identité"},
+{id:"ras",nom:"RAS Intérim",dom:"ras-interim.fr",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2024",act:"Nombreuses missions, dossier complet",conv:"—",cons:"Pièces d'identité probablement détenues. Même réserve sur la paie.",preuve:"Une dizaine de fils ras-interim.fr et myras.fr en 2023-2024.",prot:0,sens:"Identité"},
+{id:"adecco",nom:"Adecco",dom:"adecco.fr",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2024",act:"Dossier candidat",conv:"—",cons:"Même réserve sur la conservation de paie.",preuve:"Mails adecco.fr.",prot:0,sens:"Identité"},
+{id:"manpower",nom:"Manpower",dom:"manpower.fr",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2023",act:"Dossier candidat",conv:"—",cons:"Même réserve.",preuve:"alertcv@, webmaster@, nice-btp@, bressuire@.",prot:0,sens:"Identité"},
+{id:"randstad",nom:"Randstad",dom:"randstad.fr",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Dossier candidat",conv:"—",cons:"Même réserve.",preuve:"Mails randstad.fr.",prot:0,sens:"Identité"},
+{id:"partnaire",nom:"Partnaire",dom:"partnaire.fr",cat:"Emploi & intérim",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Dossier candidat",conv:"—",cons:"Même réserve.",preuve:"Mails partnaire.fr.",prot:0,sens:"Identité"},
+{id:"samsic",nom:"Samsic Emploi",dom:"samsic-emploi.fr",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2024-10-18",act:"Dossier candidat",conv:"—",cons:"Même réserve.",preuve:"Bienvenue du 18/10/2024.",prot:0,sens:"Identité"},
+{id:"coffreo",nom:"Coffreo",dom:"coffreo.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Élevée",date:"2024-03-24",act:"Coffre-fort numérique de contrats d'intérim",conv:"—",cons:"Contient tes contrats et bulletins : récupère-les avant toute suppression.",preuve:"Réinitialisation de mot de passe du 24/03/2024.",prot:0,sens:"Identité"},
+{id:"interimsante",nom:"Intérimaires Santé",dom:"interimairessante.fr",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2025-05-05",act:"Prévoyance intérim",conv:"—",cons:"Droits sociaux : conservation probable.",preuve:"Bienvenue du 05/05/2025 et du 17/03/2025.",prot:0,sens:""},
+{id:"centraltest",nom:"Central Test",dom:"centraltest.com",cat:"Emploi & intérim",rel:"Compte confirmé",cert:"Moyenne",date:"2025-06-03",act:"Test psychométrique passé",conv:"—",cons:"Résultats de tests de personnalité : données sensibles en pratique.",preuve:"assessment@centraltest.com du 03/06/2025.",prot:0,sens:"Identité"},
+
+// ---------- ADMINISTRATION ----------
+{id:"caf",nom:"CAF",dom:"caf.fr",cat:"Administration",rel:"Compte obligatoire",cert:"Élevée",date:"2024-08-15",act:"Dossier allocataire",conv:"—",cons:"Aucun effacement : mission de service public.",preuve:"emailing.caf.fr, no-reply@caf.fr, cafisere.",prot:0,sens:""},
+{id:"ants",nom:"ANTS",dom:"ants.gouv.fr",cat:"Administration",rel:"Compte confirmé",cert:"Élevée",date:"2024",act:"Titres (permis, carte d'identité)",conv:"—",cons:"Aucun effacement : titres d'identité.",preuve:"Mails ants.gouv.fr.",prot:0,sens:"Identité"},
+{id:"permis",nom:"Ministère de l'Intérieur — permis",dom:"interieur.gouv.fr",cat:"Administration",rel:"Dossier officiel",cert:"Élevée",date:"2023",act:"Points et titre de conduite",conv:"—",cons:"Aucun effacement possible.",preuve:"Trois fils de 2023 (189bbd46aef5a9fe, 1889efb314842ceb, 187e09d14ca83eae).",prot:0,sens:"Identité"},
+{id:"actiroute",nom:"Actiroute / ECF",dom:"actiroute.com",cat:"Administration",rel:"Achat de stage",cert:"Moyenne",date:"2023",act:"Stage de récupération de points",conv:"—",cons:"Prestataire privé détenant une information liée à une infraction : bon candidat à l'effacement passé le délai comptable.",preuve:"Mails actiroute et ECF.",prot:0,sens:"Identité"},
+{id:"ciclade",nom:"Ciclade (Caisse des Dépôts)",dom:"ciclade.fr",cat:"Administration",rel:"Compte confirmé",cert:"Élevée",date:"2026-03-28",act:"Recherche d'avoirs en déshérence",conv:"—",cons:"Service public financier ; conservation légale.",preuve:"Deux mails du 28/03/2026.",prot:0,sens:"Financier"},
+{id:"digiposte",nom:"Digiposte / La Poste",dom:"laposte.fr",cat:"Administration",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Coffre-fort numérique",conv:"Documents personnels",cons:"Contient probablement bulletins et documents officiels : récupère-les avant.",preuve:"mail-digiposte.laposte.info.",prot:0,sens:"Identité"},
+{id:"servicecivique",nom:"Service Civique",dom:"service-civique.gouv.fr",cat:"Administration",rel:"Compte probable",cert:"Faible",date:"2024",act:"Candidature",conv:"—",cons:"Service public.",preuve:"Mails service-civique.gouv.fr.",prot:0,sens:""},
+
+// ---------- ÉTUDES ----------
+{id:"unilim",nom:"Université de Limoges",dom:"unilim.fr",cat:"Études",rel:"Ancienne inscription",cert:"Élevée",date:"2025-08-27",act:"L1 droit 2025-2026, adresse tanguy.lys@etu.unilim.fr",conv:"Messagerie universitaire",cons:"Dossier scolaire : conservation longue imposée. La messagerie étudiante, elle, peut être fermée.",preuve:"Mails unilim.fr et reussite-etudiante@unilim.fr.",prot:0,sens:""},
+{id:"parcoursup",nom:"Parcoursup",dom:"parcoursup.fr",cat:"Études",rel:"Compte confirmé",cert:"Élevée",date:"2024",act:"Candidatures passées",conv:"—",cons:"Service public de l'éducation ; conservation réglementée.",preuve:"Mails parcoursup.fr.",prot:0,sens:""},
+{id:"cned",nom:"CNED",dom:"cned.fr",cat:"Études",rel:"Ancienne inscription",cert:"Moyenne",date:"2023",act:"Aucune trace récente",conv:"—",cons:"Dossier scolaire.",preuve:"Mails ac-cned.fr.",prot:0,sens:""},
+{id:"academia",nom:"Academia.edu",dom:"academia.edu",cat:"Études",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-15",act:"Mails très fréquents",conv:"—",cons:"Gros volume de prospection : effacement et retrait du consentement (art. 7 et 21) tout indiqués.",preuve:"updates@academia-mail.com jusqu'au 15/09/2026.",prot:0,sens:""},
+{id:"quizlet",nom:"Quizlet",dom:"quizlet.com",cat:"Études",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-16",act:"Séries de révision suivies",conv:"—",cons:"Perte de tes jeux de révision : les exporter avant si tu t'en sers.",preuve:"newsletter@lifecycle.quizlet.com jusqu'au 16/09/2026.",prot:0,sens:""},
+{id:"studyrama",nom:"Studyrama",dom:"studyrama.com",cat:"Études",rel:"Prospection",cert:"Moyenne",date:"2025",act:"Salons étudiants",conv:"—",cons:"Données revendues à des écoles : effacement utile.",preuve:"studyrama.com, partenaire.studyrama.com.",prot:0,sens:""},
+{id:"studapart",nom:"Studapart",dom:"studapart.com",cat:"Études",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Recherche de logement",conv:"Messagerie avec bailleurs",cons:"Dossier de location : revenus et garants possibles.",preuve:"Mails studapart.com.",prot:0,sens:"Identité"},
+{id:"exchangecollege",nom:"Exchange College",dom:"exchange-college.com",cat:"Études",rel:"Prospection",cert:"Moyenne",date:"2026",act:"École de banque-finance-assurance",conv:"—",cons:"Prospection scolaire ; retrait du consentement.",preuve:"contact@exchange-college.com.",prot:0,sens:""},
+{id:"ief2i",nom:"IEF2i",dom:"ief2i.fr",cat:"Études",rel:"Prospection",cert:"Faible",date:"2025",act:"Organisme de formation",conv:"—",cons:"Prospection.",preuve:"Mails ief2i.fr.",prot:0,sens:""},
+{id:"afev",nom:"AFEV",dom:"afev.org",cat:"Associations",rel:"Compte probable",cert:"Moyenne",date:"2024",act:"Engagement étudiant",conv:"—",cons:"Association : dossier de bénévole.",preuve:"Nombreux mails afev.org.",prot:0,sens:""},
+
+// ---------- JEUX D'ARGENT ----------
+{id:"unibet",nom:"Unibet",dom:"unibet.fr",cat:"Jeux d'argent",rel:"Compte confirmé",cert:"Élevée",date:"2026-05-24",act:"Compte de paris ouvert",conv:"—",cons:"Jeu d'argent : l'ANJ impose la conservation des données de jeu et d'identité pendant plusieurs années. L'effacement sera partiel. Vérifier un solde avant toute fermeture.",preuve:"Mail de bienvenue du 24/05/2026, info@auto.unibet.fr.",prot:0,sens:"Identité"},
+
+// ---------- COMMERCE ----------
+{id:"darty",nom:"Darty",dom:"darty.com",cat:"Commerce",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Newsletters quasi quotidiennes, achats passés",conv:"—",cons:"Garanties liées aux achats : conserver les factures avant d'effacer le compte.",preuve:"news.darty.com, satisfaction@client.darty.fr.",prot:0,sens:""},
+{id:"fnac",nom:"Fnac",dom:"fnac.com",cat:"Commerce",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-16",act:"Achat en magasin Toulon le 08/09/2026",conv:"—",cons:"Garanties et adhésion Fnac : vérifier avant.",preuve:"satisfaction@client.fnac.com, service-clientele@fnac.com.",prot:0,sens:""},
+{id:"bonnegueule",nom:"BonneGueule",dom:"bonnegueule.fr",cat:"Commerce",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-18",act:"Achat récent financé par Alma (crédit en cours)",conv:"—",cons:"Un crédit Alma court encore sur cet achat : ne pas fermer le compte avant la fin des prélèvements.",preuve:"emailing.bonnegueule.fr, factures boutique, Alma 18/09/2026.",prot:0,sens:""},
+{id:"marionnaud",nom:"Marionnaud",dom:"marionnaud.fr",cat:"Commerce",rel:"Compte confirmé",cert:"Moyenne",date:"2024-11-29",act:"Programme de fidélité",conv:"—",cons:"Points de fidélité perdus.",preuve:"news.marionnaud.paris, bienvenue du 29/11/2024.",prot:0,sens:""},
+{id:"mms",nom:"M&M'S",dom:"mms.com",cat:"Commerce",rel:"Compte probable",cert:"Moyenne",date:"2026-09-16",act:"Prospection intense",conv:"—",cons:"Aucune : pur marketing.",preuve:"donotreply@mms.com, bienvenue du 01/01/2026.",prot:0,sens:""},
+{id:"comptoirmathilde",nom:"Le Comptoir de Mathilde",dom:"lecomptoirdemathilde.com",cat:"Commerce",rel:"Newsletter",cert:"Moyenne",date:"2026-09-16",act:"Prospection",conv:"—",cons:"Aucune.",preuve:"news.lecomptoirdemathilde.com.",prot:0,sens:""},
+{id:"joom",nom:"Joom",dom:"joom.com",cat:"Commerce",rel:"Compte confirmé",cert:"Moyenne",date:"2024-04",act:"Commandes passées, plus de trace depuis 2024",conv:"—",cons:"Plateforme hors UE : effacement à demander malgré tout.",preuve:"no-reply@notifications.joom.com (commandes), offers.joom.com.",prot:0,sens:""},
+{id:"lidl",nom:"Lidl",dom:"lidl.fr",cat:"Commerce",rel:"Compte confirmé",cert:"Moyenne",date:"2024-09-29",act:"Compte Lidl Plus probable",conv:"—",cons:"Historique d'achats alimentaires.",preuve:"noreply@lidl.com du 29/09/2024.",prot:0,sens:""},
+{id:"otacos",nom:"O'Tacos",dom:"o-tacos.com",cat:"Commerce",rel:"Compte confirmé",cert:"Moyenne",date:"2026-07-24",act:"Compte de fidélité",conv:"—",cons:"Aucune.",preuve:"Bienvenue du 24/07/2026 (otacos@email.o-tacos.com).",prot:0,sens:""},
+{id:"leclerc",nom:"E.Leclerc",dom:"leclerc.com",cat:"Commerce",rel:"Compte probable",cert:"Faible",date:"2025",act:"Prospection",conv:"—",cons:"Historique d'achats.",preuve:"Mails e.leclerc.",prot:0,sens:""},
+{id:"izac",nom:"Izac",dom:"izac.fr",cat:"Commerce",rel:"Newsletter",cert:"Faible",date:"2025",act:"Prospection",conv:"—",cons:"Aucune.",preuve:"Mails izac.fr.",prot:0,sens:""},
+{id:"asus",nom:"Compte ASUS",dom:"asus.com",cat:"Commerce",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-15",act:"Matériel enregistré, ROG Experience",conv:"—",cons:"Garantie liée à l'enregistrement du produit : vérifier avant d'effacer.",preuve:"MemberService_no-reply@account.asus.com du 20/08/2023 ; nedm.asus.com.",prot:0,sens:""},
+{id:"samsung",nom:"Compte Samsung",dom:"samsung.com",cat:"Commerce",rel:"Compte confirmé",cert:"Moyenne",date:"2026-09-12",act:"Compte appareil",conv:"Sauvegardes d'appareil",cons:"Perte des sauvegardes et de la localisation d'appareil.",preuve:"sa.noreply@samsung-mail.com du 12/09/2026.",prot:0,sens:""},
+{id:"microsoftstore",nom:"Microsoft Store",dom:"microsoft.com",cat:"Commerce",rel:"Achat sans compte distinct",cert:"Faible",date:"2024",act:"Rattaché au compte Microsoft",conv:"—",cons:"Ne pas traiter séparément du compte Microsoft.",preuve:"Mails microsoftstore.",prot:0,sens:""},
+{id:"avisverifies",nom:"Avis Vérifiés",dom:"avis-verifies.com",cat:"Commerce",rel:"Sous-traitant",cert:"Moyenne",date:"2025",act:"Collecte d'avis pour des marchands",conv:"Avis publiés",cons:"Tes avis publics peuvent être rattachés à ton nom : demander l'anonymisation ou la suppression.",preuve:"feedback.avis-verifies.com.",prot:0,sens:""},
+{id:"trustpilot",nom:"Trustpilot",dom:"trustpilot.com",cat:"Commerce",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Avis publiés",conv:"Avis publics",cons:"Avis publics associés à ton profil.",preuve:"Mails trustpilot.com.",prot:0,sens:""},
+{id:"judgeme",nom:"Judge.me",dom:"judge.me",cat:"Commerce",rel:"Sous-traitant",cert:"Faible",date:"2025",act:"Collecte d'avis boutique",conv:"Avis",cons:"Demande à adresser à la boutique concernée.",preuve:"Mails judge.me.",prot:0,sens:""},
+{id:"shopapp",nom:"Shop (Shopify)",dom:"shop.app",cat:"Commerce",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Suivi de commandes",conv:"—",cons:"Historique d'achats multi-boutiques.",preuve:"Mails shop.app.",prot:0,sens:""},
+{id:"pagesjaunes",nom:"PagesJaunes",dom:"pagesjaunes.fr",cat:"Commerce",rel:"Prospection",cert:"Faible",date:"2024",act:"Prospection",conv:"—",cons:"Aucune.",preuve:"emailing.pagesjaunes.fr.",prot:0,sens:""},
+
+// ---------- TRANSPORT ----------
+{id:"sncf",nom:"SNCF Connect",dom:"sncf-connect.com",cat:"Transport",rel:"Compte confirmé",cert:"Élevée",date:"2025-06-05",act:"Réinitialisation de mot de passe en juin 2025",conv:"—",cons:"Historique de voyages perdu ; vérifier une carte ou un abonnement en cours.",preuve:"no-reply@monidentifiant.sncf du 05/06/2025 ; sncf-connect.com.",prot:0,sens:""},
+{id:"qpark",nom:"Q-Park",dom:"q-park.fr",cat:"Transport",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-23",act:"Compte activé le 23/09/2026 — tout récent",conv:"—",cons:"Compte très récent : peut-être encore utile. Plaques d'immatriculation enregistrées.",preuve:"Activation de compte du 23/09/2026 (noreply@q-park.com).",prot:0,sens:"Identité"},
+{id:"airwebpass",nom:"Airweb (transport local)",dom:"airwebpass.com",cat:"Transport",rel:"Compte confirmé",cert:"Moyenne",date:"2026-09-08",act:"Titres de transport dématérialisés",conv:"—",cons:"Titres et abonnement en cours possibles.",preuve:"no-reply@airwebpass.com, 08/09/2026.",prot:0,sens:""},
+{id:"tomtom",nom:"TomTom",dom:"tomtom.com",cat:"Transport",rel:"Compte probable",cert:"Faible",date:"2024",act:"Aucune trace récente",conv:"Historique de trajets",cons:"Données de géolocalisation.",preuve:"Mails tomtom.com.",prot:0,sens:"Identité"},
+
+// ---------- LOISIRS & SPORT ----------
+{id:"deezer",nom:"Deezer",dom:"deezer.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Aucune trace récente",conv:"—",cons:"Playlists perdues : les exporter avant.",preuve:"music.deezer.com.",prot:0,sens:""},
+{id:"spotify",nom:"Spotify",dom:"spotify.com",cat:"Loisirs & sport",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Aucune trace récente",conv:"—",cons:"Playlists perdues ; vérifier un abonnement.",preuve:"Mails spotify.com.",prot:0,sens:""},
+{id:"nintendo",nom:"Nintendo",dom:"nintendo.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Moyenne",date:"2024",act:"Aucune trace récente",conv:"—",cons:"Jeux numériques achetés deviennent inaccessibles définitivement.",preuve:"Mails nintendo.com.",prot:0,sens:""},
+{id:"nexusmods",nom:"Nexus Mods",dom:"nexusmods.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Élevée",date:"2025-08-23",act:"Compte de modding",conv:"Messages du forum",cons:"Contributions publiques éventuelles.",preuve:"support@nexusmods.com du 23/08/2025.",prot:0,sens:""},
+{id:"canalplus",nom:"Canal+",dom:"canalplus.com",cat:"Médias",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-16",act:"Prospection intense ; abonnement passé probable",conv:"—",cons:"Distinguer résiliation d'abonnement et effacement : deux démarches séparées.",preuve:"servicesclients.canalplus.fr (11/06/2024), fr-mail.canalplus.com.",prot:0,sens:""},
+{id:"planity",nom:"Planity",dom:"planity.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-12",act:"Rendez-vous coiffure actifs",conv:"—",cons:"Planity réserve pour des salons : le salon garde son propre fichier client.",preuve:"noreply@planity.com, rappels de rendez-vous.",prot:0,sens:""},
+{id:"resamania",nom:"Resamania / Azeoo",dom:"resamania.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Élevée",date:"2025-08-19",act:"Salle de sport — abonnement possiblement actif",conv:"—",cons:"Abonnement avec engagement possible : vérifier avant, résiliation ≠ effacement.",preuve:"hello@azeoo.com du 19/08/2025 ; resamania.com.",prot:0,sens:""},
+{id:"comptoirforme",nom:"Comptoir de la Forme",dom:"comptoirdelaforme.fr",cat:"Loisirs & sport",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Salle de sport",conv:"—",cons:"Engagement possible.",preuve:"Mails comptoirdelaforme.fr.",prot:0,sens:""},
+{id:"feverup",nom:"Fever",dom:"feverup.com",cat:"Loisirs & sport",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Billetterie d'événements",conv:"—",cons:"Billets à venir éventuels.",preuve:"email.feverup.com.",prot:0,sens:""},
+{id:"lasergame",nom:"Lasergame Evolution",dom:"lasergame-evolution.fr",cat:"Loisirs & sport",rel:"Compte probable",cert:"Faible",date:"2024",act:"Aucune trace récente",conv:"—",cons:"Aucune.",preuve:"Mails lasergame-evolution.",prot:0,sens:""},
+{id:"weezevent",nom:"Weezevent",dom:"weezevent.com",cat:"Loisirs & sport",rel:"Achat sans compte",cert:"Moyenne",date:"2025",act:"Billetterie",conv:"—",cons:"Billetterie pour des organisateurs : demande à adresser à l'organisateur.",preuve:"Mails weezevent.com.",prot:0,sens:""},
+{id:"artexplora",nom:"Art Explora",dom:"artexplora.org",cat:"Loisirs & sport",rel:"Newsletter",cert:"Faible",date:"2025",act:"Prospection culturelle",conv:"—",cons:"Aucune.",preuve:"Mails artexplora.org.",prot:0,sens:""},
+{id:"epassjeunes",nom:"e-PassJeunes",dom:"e-passjeunes.fr",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Dispositif régional jeunesse",conv:"—",cons:"Solde d'aides éventuel.",preuve:"Mails e-passjeunes.",prot:0,sens:""},
+{id:"cartejeunes",nom:"Carte Jeunes",dom:"cartejeunes.fr",cat:"Loisirs & sport",rel:"Compte probable",cert:"Faible",date:"2024",act:"Dispositif jeunesse",conv:"—",cons:"Aucune.",preuve:"Mails cartejeunes.fr.",prot:0,sens:""},
+{id:"airbnb",nom:"Airbnb",dom:"airbnb.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Élevée",date:"2025",act:"Compte voyageur",conv:"Messagerie avec les hôtes",cons:"Airbnb conserve l'historique de séjours pour raisons légales et fiscales ; les messages restent visibles des hôtes.",preuve:"automated@airbnb.com, express@airbnb.com, enquêtes Medallia.",prot:0,sens:"Identité"},
+{id:"booking",nom:"Booking.com",dom:"booking.com",cat:"Loisirs & sport",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Réservations passées (Campanile, Kyriad)",conv:"Messagerie avec les hôtels",cons:"Les hôtels gardent leur propre fichier client.",preuve:"booking.com, campanile, kyriad.",prot:0,sens:"Identité"},
+{id:"letreco",nom:"Letreco",dom:"letreco.fr",cat:"Loisirs & sport",rel:"Compte probable",cert:"Faible",date:"2024",act:"Aucune trace récente",conv:"—",cons:"Aucune.",preuve:"Mails letreco.fr.",prot:0,sens:""},
+
+// ---------- OUTILS ----------
+{id:"calendly",nom:"Calendly",dom:"calendly.com",cat:"Outils",rel:"Compte confirmé",cert:"Moyenne",date:"2025-05-09",act:"Aucune trace récente",conv:"—",cons:"Liens de prise de rendez-vous cassés.",preuve:"teamcalendly@send.calendly.com du 09/05/2025.",prot:0,sens:""},
+{id:"asana",nom:"Asana",dom:"asana.com",cat:"Outils",rel:"Compte probable",cert:"Moyenne",date:"2025",act:"Aucune trace récente",conv:"Commentaires de projet",cons:"Contenus partagés dans des espaces d'équipe.",preuve:"Mails asana.com.",prot:0,sens:""},
+{id:"luminpdf",nom:"Lumin PDF",dom:"luminpdf.com",cat:"Outils",rel:"Compte confirmé",cert:"Moyenne",date:"2025-09-05",act:"Lié à ton Drive",conv:"Documents PDF",cons:"Vérifie ce que Lumin a encore comme accès à ton Google Drive et révoque-le.",preuve:"noreply@luminpdf.com du 05/09/2025.",prot:0,sens:""},
+{id:"slidesgpt",nom:"SlidesGPT",dom:"slidesgpt.com",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2025",act:"Aucune trace récente",conv:"Présentations générées",cons:"Aucune.",preuve:"Mails slidesgpt.com.",prot:0,sens:""},
+{id:"web3forms",nom:"Web3Forms",dom:"web3forms.com",cat:"Outils",rel:"Compte confirmé",cert:"Moyenne",date:"2026-07-20",act:"Formulaires de tes sites",conv:"Messages reçus via formulaires",cons:"Casse les formulaires de contact de tes sites en production.",preuve:"support@web3forms.com du 20/07/2026.",prot:0,sens:""},
+{id:"wetransfer",nom:"WeTransfer",dom:"wetransfer.com",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2024",act:"Envois ponctuels",conv:"Fichiers transférés",cons:"Aucune.",preuve:"Mails wetransfer.com.",prot:0,sens:""},
+{id:"higgsfield",nom:"Higgsfield",dom:"higgsfield.ai",cat:"Outils",rel:"Compte confirmé",cert:"Élevée",date:"2026-09-10",act:"Génération vidéo",conv:"Créations générées",cons:"Vérifier un abonnement actif avant de fermer.",preuve:"noreply@higgsfield.ai, hello@m.higgsfield.ai (19/07/2026).",prot:0,sens:""},
+{id:"kimi",nom:"Kimi",dom:"kimi.ai",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2026",act:"Aucune trace récente",conv:"Conversations IA",cons:"Service hors UE : demande RGPD possible mais réponse incertaine.",preuve:"Mails kimi.ai.",prot:0,sens:""},
+{id:"riseup",nom:"Riseup.ai",dom:"riseup.ai",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2026",act:"Aucune trace récente",conv:"—",cons:"Aucune.",preuve:"Mails riseup.ai.",prot:0,sens:""},
+{id:"useai",nom:"use.ai",dom:"use.ai",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2025",act:"Aucune trace récente",conv:"—",cons:"Aucune.",preuve:"Mails use.ai.",prot:0,sens:""},
+{id:"kalendes",nom:"Kalendes",dom:"kalendes.com",cat:"Outils",rel:"Compte confirmé",cert:"Moyenne",date:"2023-12-24",act:"Aucune trace depuis fin 2023",conv:"—",cons:"Ancien compte dormant : bon candidat.",preuve:"do-not-use@kalendes.com, 23 et 24/12/2023.",prot:0,sens:""},
+{id:"typeform",nom:"Typeform",dom:"typeform.com",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2024",act:"Réponses à des formulaires",conv:"Réponses de formulaire",cons:"Demande à adresser au créateur du formulaire.",preuve:"Mails typeform.com.",prot:0,sens:""},
+{id:"sodexo",nom:"Sodexo Pass",dom:"sodexopass.fr",cat:"Banque & paiement",rel:"Compte confirmé",cert:"Moyenne",date:"2023-08-03",act:"Titres restaurant — solde possible",conv:"—",cons:"Un solde de titres non consommé serait perdu.",preuve:"beneficiaires@app.sodexopass.fr du 03/08/2023.",prot:0,sens:"Financier"},
+{id:"etudesonline",nom:"Etudes-online",dom:"etudes-online.fr",cat:"Outils",rel:"Panel rémunéré",cert:"Moyenne",date:"2025",act:"Panel d'études",conv:"Réponses de sondage",cons:"Panels : profil détaillé (revenus, habitudes). Bon candidat à l'effacement.",preuve:"Mails etudes-online.fr.",prot:0,sens:"Identité"},
+{id:"yoo",nom:"Yoo Paris",dom:"yoo.paris",cat:"Outils",rel:"Compte probable",cert:"Faible",date:"2024",act:"Aucune trace récente",conv:"—",cons:"Aucune.",preuve:"Mails yoo.paris.",prot:0,sens:""},
+{id:"patreon",nom:"Patreon",dom:"patreon.com",cat:"Médias",rel:"Compte confirmé",cert:"Moyenne",date:"2025",act:"Abonnement à des créateurs, peut-être encore actif",conv:"Messages de créateurs",cons:"Un abonnement actif continuerait d'être prélevé : le résilier d'abord.",preuve:"Mails patreon.com.",prot:0,sens:"Financier"},
+{id:"fondationsp",nom:"Fondation Saint-Pierre",dom:"fondationsaintpierre.org",cat:"Associations",rel:"Donateur",cert:"Moyenne",date:"2026-09-10",act:"Dons effectués",conv:"—",cons:"Les reçus fiscaux ont une conservation légale ; la prospection peut cesser.",preuve:"communication@fondationsaintpierre.org.",prot:0,sens:"Financier"},
+{id:"brgm",nom:"BRGM",dom:"brgm.fr",cat:"Médias",rel:"Newsletter",cert:"Faible",date:"2026-08-31",act:"Lettre d'information",conv:"—",cons:"Aucune : simple désinscription.",preuve:"lettres@newsletters-brgm.fr.",prot:0,sens:""},
+{id:"chronofresh",nom:"Chronofresh",dom:"chronofresh.fr",cat:"Transport",rel:"Livraison",cert:"Faible",date:"2024",act:"Suivi de colis",conv:"—",cons:"Adresse de livraison conservée.",preuve:"Mails chronofresh.fr.",prot:0,sens:"Identité"}
+];
+</script>
+<script>
+const LABELS={keep:"Conserver",erase:"Demander l'effacement",custom:"Personnaliser la demande",later:"Décider plus tard"};
+const ORDER=["keep","erase","custom","later"];
+const state=Object.create(null);
+const unlocked=new Set();
+let DB=null, saving=Object.create(null);
+
+SERVICES.forEach(s=>{state[s.id]={decision:s.prot?"keep":"later",note:"",prep:"Non préparée"};});
+
+const el=id=>document.getElementById(id);
+const list=el("list"), q=el("q"), fcat=el("fcat"), frel=el("frel"), fdec=el("fdec"), fsens=el("fsens");
+
+function fill(sel,label,vals){
+  sel.innerHTML="";
+  const o=document.createElement("option");o.value="";o.textContent=label;sel.appendChild(o);
+  vals.forEach(v=>{const x=document.createElement("option");x.value=v;x.textContent=v;sel.appendChild(x);});
+}
+const uniq=k=>[...new Set(SERVICES.map(s=>s[k]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr"));
+fill(fcat,"Toutes les catégories",uniq("cat"));
+fill(frel,"Tous les types de relation",uniq("rel"));
+fill(fsens,"Sensibilité : toutes",uniq("sens"));
+fill(fdec,"Toutes les décisions",ORDER.map(k=>LABELS[k]));
+
+function matches(s){
+  const t=q.value.trim().toLowerCase();
+  if(t && !(s.nom.toLowerCase().includes(t)||s.dom.toLowerCase().includes(t)||s.cat.toLowerCase().includes(t))) return false;
+  if(fcat.value && s.cat!==fcat.value) return false;
+  if(frel.value && s.rel!==frel.value) return false;
+  if(fsens.value && s.sens!==fsens.value) return false;
+  if(fdec.value && LABELS[state[s.id].decision]!==fdec.value) return false;
+  return true;
+}
+
+function counters(){
+  const c={keep:0,erase:0,custom:0,later:0};
+  SERVICES.forEach(s=>c[state[s.id].decision]++);
+  el("counts").innerHTML=
+    '<span class="count k"><b>'+c.keep+'</b> à conserver</span>'+
+    '<span class="count e"><b>'+c.erase+'</b> à effacer</span>'+
+    '<span class="count c"><b>'+c.custom+'</b> à personnaliser</span>'+
+    '<span class="count"><b>'+c.later+'</b> à examiner</span>'+
+    '<span class="count"><b>'+SERVICES.length+'</b> services au total</span>';
+  const vis=SERVICES.filter(matches), free=vis.filter(s=>!s.prot).length;
+  el("gscope").textContent="Portée : les "+free+" service"+(free===1?"":"s")+" non protégé"+(free===1?"":"s")+" parmi les "+vis.length+" actuellement affichés. Les services protégés ne sont jamais inclus.";
+}
+
+function esc(x){return String(x).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
+
+function card(s){
+  const st=state[s.id], locked=s.prot&&!unlocked.has(s.id);
+  const d=document.createElement("article");
+  d.className="card"+(s.sens?" sensible":"")+(s.prot?" prot":"");
+  d.id="c-"+s.id;
+  let h='<div class="hd"><div><div class="nm">'+esc(s.nom)+'</div><div class="dm">'+esc(s.dom)+'</div></div><div class="state">'+esc(st.prep)+'</div></div>';
+  h+='<div class="chips">';
+  if(s.prot) h+='<span class="chip shield">Protégé</span>';
+  h+='<span class="chip">'+esc(s.cat)+'</span><span class="chip">'+esc(s.rel)+'</span><span class="chip cert-'+esc(s.cert)+'">Certitude '+esc(s.cert)+'</span>';
+  if(s.sens) h+='<span class="chip warn">'+esc(s.sens)+'</span>';
+  if(s.conv&&s.conv!=="—") h+='<span class="chip warn">Conversations privées</span>';
+  h+='</div>';
+  h+='<div class="meta">'+
+     '<div><dt>Adresse associée</dt><dd class="dm">'+esc(s.id==="supabase"?MAIL+" + alias":MAIL)+'</dd></div>'+
+     '<div><dt>Dernière trace</dt><dd>'+esc(s.date)+'</dd></div>'+
+     '<div><dt>Indice d\'activité</dt><dd>'+esc(s.act)+'</dd></div>'+
+     '<div><dt>Conversations privées</dt><dd>'+esc(s.conv||"—")+'</dd></div>'+
+     '</div>';
+  h+='<p class="cons"><b>Si tu effaces :</b> '+esc(s.cons)+'</p>';
+  h+='<div class="dec" role="group" aria-label="Décision pour '+esc(s.nom)+'">';
+  ORDER.forEach(k=>{h+='<button type="button" data-d="'+k+'" data-s="'+s.id+'" aria-pressed="'+(st.decision===k)+'"'+(locked&&k!=="keep"?" disabled":"")+'>'+LABELS[k]+'</button>';});
+  h+='</div>';
+  h+='<div class="row2">';
+  if(s.prot) h+='<button type="button" class="lnk" data-u="'+s.id+'">'+(locked?"Déverrouiller ce service protégé":"Reverrouiller sur Conserver")+'</button>';
+  h+='<button type="button" class="lnk" data-p="'+s.id+'">Voir la preuve</button>';
+  h+='</div>';
+  h+='<div class="proof" id="p-'+s.id+'" hidden><p><b>Ce sur quoi je me fonde :</b> '+esc(s.preuve)+'</p><p><b>Identifiant de ligne :</b> <code>'+esc(s.id)+'</code></p></div>';
+  h+='<textarea class="note" data-n="'+s.id+'" placeholder="Détails ou exceptions pour ce service (ex. garder les factures, effacer seulement les messages)">'+esc(st.note)+'</textarea>';
+  d.innerHTML=h;
+  return d;
+}
+
+function render(){
+  const vis=SERVICES.filter(matches);
+  list.innerHTML="";
+  if(!vis.length){
+    const e=document.createElement("div");e.className="empty";
+    e.textContent="Aucun service ne correspond à cette recherche.";
+    list.appendChild(e);
+  } else vis.forEach(s=>list.appendChild(card(s)));
+  counters();
+}
+
+async function save(id){
+  if(!DB) return;
+  if(saving[id]) {saving[id].again=true; return;}
+  saving[id]={again:false};
+  try{
+    while(true){
+      const st=state[id];
+      await DB.collection("decisions").doc(id).set({decision:st.decision,note:st.note,at:new Date().toISOString()});
+      if(!saving[id].again) break;
+      saving[id].again=false;
+    }
+    el("status").textContent="Choix enregistrés. Dernier : "+new Date().toLocaleTimeString("fr-FR")+".";
+  }catch(e){
+    el("status").textContent="Enregistrement impossible ("+(e&&e.code||"erreur")+"). Utilise « Copier mes choix » et colle-le moi.";
+  }finally{ delete saving[id]; }
+}
+
+function setDecision(id,k){
+  if(state[id].decision===k) return;
+  state[id].decision=k;
+  const s=SERVICES.find(x=>x.id===id);
+  if(s.prot&&k!=="keep") el("status").textContent="Attention : "+s.nom+" est un service protégé et passe à « "+LABELS[k]+" ». Je te demanderai une confirmation spécifique pour celui-là.";
+  render(); save(id);
+}
+
+document.addEventListener("click",ev=>{
+  const b=ev.target.closest("button"); if(!b) return;
+  if(b.dataset.d) setDecision(b.dataset.s,b.dataset.d);
+  else if(b.dataset.u){
+    const id=b.dataset.u;
+    if(unlocked.has(id)) {unlocked.delete(id); state[id].decision="keep"; save(id);} else unlocked.add(id);
+    render();
+  }
+  else if(b.dataset.p){ const p=el("p-"+b.dataset.p); p.hidden=!p.hidden; b.textContent=p.hidden?"Voir la preuve":"Masquer la preuve"; }
+  else if(b.dataset.g){
+    const k=b.dataset.g, touched=SERVICES.filter(s=>matches(s)&&!s.prot);
+    touched.forEach(s=>{state[s.id].decision=k;});
+    render(); touched.forEach(s=>save(s.id));
+    el("status").textContent=touched.length+" service"+(touched.length===1?"":"s")+" marqué"+(touched.length===1?"":"s")+" « "+LABELS[k]+" ». Les services protégés n'ont pas été touchés.";
+  }
+});
+
+let noteTimer=null;
+document.addEventListener("input",ev=>{
+  const t=ev.target;
+  if(t.dataset&&t.dataset.n){
+    state[t.dataset.n].note=t.value;
+    clearTimeout(noteTimer);
+    const id=t.dataset.n;
+    noteTimer=setTimeout(()=>save(id),700);
+  } else if(t===q||t===fcat||t===frel||t===fdec||t===fsens) render();
+});
+[fcat,frel,fdec,fsens].forEach(s=>s.addEventListener("change",render));
+
+function payload(){
+  return {compte:MAIL,genere:new Date().toISOString(),total:SERVICES.length,
+    choix:SERVICES.map(s=>({id:s.id,service:s.nom,domaine:s.dom,protege:!!s.prot,decision:state[s.id].decision,libelle:LABELS[state[s.id].decision],details:state[s.id].note}))};
+}
+
+el("prep").addEventListener("click",()=>{
+  const p=payload(), by=k=>p.choix.filter(c=>c.decision===k);
+  let t="RÉCAPITULATIF DE MES CHOIX — "+new Date().toLocaleString("fr-FR")+"\n"+MAIL+"\n\n";
+  ORDER.forEach(k=>{
+    const g=by(k); t+="— "+LABELS[k].toUpperCase()+" ("+g.length+") —\n";
+    if(!g.length) t+="  aucun\n";
+    g.forEach(c=>{t+="  "+c.service+" ["+c.domaine+"]"+(c.protege?" (protégé)":"")+(c.details?"\n     précision : "+c.details:"")+"\n";});
+    t+="\n";
+  });
+  const risky=by("erase").filter(c=>c.protege);
+  if(risky.length) t+="!! SERVICES PROTÉGÉS MARQUÉS À EFFACER — confirmation spécifique requise :\n"+risky.map(c=>"  "+c.service).join("\n")+"\n\n";
+  t+="Rien n'est envoyé tant que je n'ai pas validé le lot final.\n";
+  el("out").value=t;
+  el("out").scrollIntoView({block:"center",behavior:"smooth"});
+});
+
+el("copy").addEventListener("click",async()=>{
+  const j=JSON.stringify(payload(),null,2);
+  el("out").value=j;
+  try{ await navigator.clipboard.writeText(j); el("status").textContent="JSON copié dans le presse-papiers."; }
+  catch(e){ el("out").focus(); el("out").select(); el("status").textContent="Copie automatique refusée : le JSON est sélectionné ci-dessous, copie-le à la main."; }
+});
+
+render();
+
+(async()=>{
+  let db=null;
+  try{ db=await claude.use("db"); }catch(e){}
+  if(!db){ el("status").textContent="Stockage indisponible sur cet appareil. Tes choix restent affichés ici : utilise « Copier mes choix (JSON) » et colle-le moi."; return; }
+  DB=db;
+  el("status").textContent="Stockage connecté. Tes choix s'enregistrent automatiquement.";
+  db.collection("decisions").onSnapshot(snap=>{
+    let changed=false;
+    snap.docs.forEach(doc=>{
+      const st=state[doc.id]; if(!st) return;
+      const d=doc.data()||{};
+      if(d.decision&&ORDER.includes(d.decision)&&d.decision!==st.decision){st.decision=d.decision;changed=true;}
+      if(typeof d.note==="string"&&d.note!==st.note){st.note=d.note;changed=true;}
+      const s=SERVICES.find(x=>x.id===doc.id);
+      if(s&&s.prot&&st.decision!=="keep") unlocked.add(doc.id);
+    });
+    if(changed&&document.activeElement!==q&&!(document.activeElement&&document.activeElement.dataset&&document.activeElement.dataset.n)) render();
+  },e=>{ el("status").textContent="Le stockage a été interrompu ("+e.code+"). Passe par « Copier mes choix (JSON) »."; });
+})();
+</script>
