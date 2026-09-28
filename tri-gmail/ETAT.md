@@ -25,6 +25,25 @@ autorisation par appel dans Claude Code ; il faut d'abord répondre
 « Yes, and don't ask again » à la demande d'autorisation, sinon c'est
 inutilisable à cette échelle.
 
+## Avancement de l'archivage au 28 septembre 2026
+
+**59 fils archivés**, sortis de la réception principale. **51 nouveaux mails
+reçus entre le 14 et le 18 septembre ont été étiquetés** (beaucoup de cours
+d'économie et de droit échangés avec la promo, voir `METHODE.md` § 3).
+
+L'archivage fil par fil via le connecteur Gmail **n'est pas viable à cette
+échelle dans cette session** : le connecteur se déconnecte après chaque appel,
+ce qui ramène le débit à un fil par tour et relance la demande d'autorisation à
+chaque reconnexion. Il reste environ 5 000 fils.
+
+Les deux chemins qui marchent, décrits en détail dans `FILTRES-GMAIL.md` :
+
+1. **Tout sélectionner → Archiver**, sur ordinateur. Dix secondes pour les
+   ~5 000 fils.
+2. **Les huit filtres**, avec « Ignorer la boîte de réception (Archiver) » et
+   « Appliquer aussi aux N conversations ». Traite l'historique *et* le courrier
+   à venir, définitivement.
+
 ## Le tri est terminé
 
 **La totalité de la boîte de réception est étiquetée.** La requête de contrôle

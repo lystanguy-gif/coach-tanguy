@@ -156,6 +156,44 @@ auroredelavet@gmail.com       samira.meziani0111@gmail.com
 vergizovmark@gmail.com        Yeray.b81@gmail.com
 ```
 
+### Camarades découverts en septembre 2026
+Tanguy a diffusé ses cours de L1 droit en PDF à toute sa promo, et reçoit en
+retour des cours d'économie. Ces adresses vont dans **Cours** :
+```
+leyna.trk11@gmail.com          lynamlant@gmail.com
+plottonclara@gmail.com         fmadadelhadda@gmail.com
+nell.lfrt@gmail.com            quentinmiraglio@gmail.com
+milanasarma123@gmail.com       valentine22062008@gmail.com
+elysa.malki@gmail.com          elora.loyseau@outlook.fr
+riachi.lea@gmail.com           bertillerichard16@gmail.com
+martelstella26@gmail.com       lolakahal30@gmail.com
+anaspro.nouir@gmail.com        louis.ratajski2607@gmail.com
+gaetan.jouard83@gmail.com      jujudesana@gmail.com
+malikrejraji@gmail.com         calybarnous@yahoo.com
+emmalouise.munoz@gmail.com     mariabsntana@gmail.com
+ambretheosic@gmail.com         melinanys1804@gmail.com
+roubachesonia22@gmail.com      jade.sev26@gmail.com
+annaoddone2607@gmail.com       yasminemchichou609@gmail.com
+nfti.sarah@gmail.com           ilyess080608@yahoo.com
+alicia.valenzou@gmail.com      andynapoleon11@gmail.com
+Julie27058@gmail.com           davidmusset05@gmail.com
+missaouiines342@gmail.com
+```
+
+### `drive-shares-dm-noreply@google.com` va dans Cours, pas dans Abonnements
+Ces messages sont les demandes d'accès au dossier Drive **« Révisions Droit L1
+(PDF) »** envoyées par les camarades. C'est du partage de cours, pas une
+notification de service.
+
+### Autres expéditeurs nouveaux
+- `contact@helloasso.com` → **Abonnements** ; le mail de paiement d'adhésion
+  (« Tous en droit nouvelle génération », association étudiante de droit) porte
+  en plus **Banque** et **Fac**
+- `invoice+statements@stripe.com` → **Banque** (reçus Eleven Labs)
+- `no-reply@softy.pro` → **Pro** (Genesis RH, suppression de données de
+  candidature)
+- `annonce@compte.lesjeudis.com` → **Pro**
+
 ### Une erreur de routage à corriger
 `contact@exchange-college.com` a d'abord été envoyé dans À vérifier sur la seule
 foi de l'adresse. Les objets (« formations en banque, finance et assurance »,
