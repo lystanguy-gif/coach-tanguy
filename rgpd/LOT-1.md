@@ -210,3 +210,18 @@ Service protégé passé à « effacer » par Tanguy, puis confirmation spécifi
 - **Envoi** : 29/09/2026, message `1a0ea9d93a5c2aae`. Suppression du compte
   client et des données, retrait de toutes les listes, retrait du
   consentement, information sur les données conservées. Échéance : 29/10/2026.
+
+## Yubo, Yoti et l'application intime (29/09/2026)
+
+- **Yoti** : prestataire de vérification d'âge utilisé par Yubo (selfie vidéo)
+  et par une application intime que Tanguy n'a pas à nommer. Selon la
+  [politique de Yoti](https://www.yoti.com/privacy/age-verification/) : selfie
+  supprimé dès l'âge estimé ; pour une pièce d'identité, images, données du
+  document et selfie supprimés dès l'âge donné (28 jours en cas de revue
+  manuelle demandée par le client), résultat conservé 6 mois au plus ; Yoti ne
+  sait pas pour quel site la vérification est faite et n'agit que comme
+  prestataire du site. Aucun mail de Yoti dans la boîte : pas de compte Yoti sur
+  cette adresse. Pas de demande à Yoti, jugée sans objet.
+- **Yubo** : Tanguy garde le compte (« Yubo et mon compte je garde »). Aucune
+  demande envoyée ; le brouillon `r-2485890703085492133` reste non envoyé.
+- **Application intime** : compte gardé. Rien à faire.
