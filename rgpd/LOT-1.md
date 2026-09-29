@@ -154,3 +154,15 @@ qu'il n'avait pas donné son accord, ce qui renforce la demande au regard de
 l'article 9.2.d. Pour Instagram, Tanguy ne sait pas s'il apparaît : la lettre
 demande de vérifier au lieu de l'affirmer. Le texte des signalements aux
 plateformes est corrigé de la même façon.
+
+## Réécriture « courrier humain » des trois demandes (29/09/2026)
+
+Tanguy ne veut pas que les courriers aient l'air rédigés par une IA : ton très
+formel et carré, mais humain. Les trois brouillons sont réécrits en prose, sans
+listes à puces, avec les articles cités sans être commentés, un registre
+homogène et les formules de politesse d'usage (« Je vous prie d'agréer… »,
+« Yours faithfully »). Structure inspirée du modèle de courrier de la CNIL.
+Objets : « Demande d'effacement de mes données personnelles » (RN) et
+« Request for erasure of personal data (Article 17 GDPR) » (Grindr, Twitch).
+Contenu inchangé sur le fond. Les trois brouillons ont été relus après
+enregistrement : destinataires corrects, aucun lien parasite.
