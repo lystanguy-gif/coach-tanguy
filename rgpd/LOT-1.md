@@ -3,6 +3,22 @@
 Préparé le 29/09/2026 sur délégation de Tanguy (« fais-le toi »).
 **Statut : en attente de sa confirmation. Rien n'est envoyé.**
 
+## Révision de Tanguy, 29/09/2026 vers 00 h 15
+
+Tanguy a repris le tableau lui-même. Export JSON et base du registre concordent.
+
+- **Restent dans le lot** : Grindr, Twitch, Rassemblement National (avec la
+  fédération 05 et HubSpot).
+- **Sortis du lot, en « décider plus tard »** : Tinder, Yubo, Discord. Le
+  brouillon Yubo reste dans Gmail mais ne sera pas envoyé.
+- **Xbox** : gardé.
+- **HelloAsso** : passé de « Conserver » à « décider plus tard ».
+- **Le Dauphiné Libéré** : service protégé passé à « effacer ». Confirmation
+  spécifique demandée, et précision nécessaire : résiliation de l'abonnement,
+  effacement, ou les deux.
+- **Patriotes pour l'Europe** : passé à « personnaliser ». Précision demandée :
+  simple désinscription des envois, ou effacement complet.
+
 ## Les demandes
 
 | Service | Destinataire vérifié | Source | Canal | Brouillon Gmail |
