@@ -5,6 +5,18 @@ et Instagram les vidéos et photos où Tanguy apparaît sur les comptes du RNJ d
 Hautes-Alpes. C'est Tanguy qui soumet les formulaires ; il faut l'adresse (URL)
 de chaque publication.
 
+## Compte visé
+
+TikTok : `@rnj.hautes.alpes` (compte du RNJ des Hautes-Alpes), fourni par Tanguy
+le 29/09/2026. Il y apparaît au moins dans une vidéo. Le compte Instagram
+correspondant reste à identifier.
+
+Le lien fourni portait un code de partage TikTok (`_r`, `_t`) susceptible de
+renvoyer au compte de Tanguy : retiré, il n'apparaît ni dans la lettre au RN ni
+ici. Pour le formulaire TikTok, il faut le lien de **la vidéo** elle-même, pas
+seulement celui du compte ; retirer aussi la partie après le « ? » avant de le
+coller.
+
 ## Formulaires officiels
 
 - **TikTok** : [signaler une atteinte à la vie privée](https://www.tiktok.com/legal/report/privacy?lang=fr).
