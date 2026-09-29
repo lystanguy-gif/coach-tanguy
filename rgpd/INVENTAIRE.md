@@ -4,8 +4,8 @@ Compte : `lystanguy@gmail.com`. Établi le 28 septembre 2026 à partir de tout
 l'historique accessible de la boîte, de février 2022 à septembre 2026, archives
 comprises.
 
-**161 services**, dont **54 protégés** (décision « Conserver » verrouillée) et
-**64** portant une catégorie particulière au sens du RGPD ou une donnée
+**164 services**, dont **54 protégés** (décision « Conserver » verrouillée) et
+**66** portant une catégorie particulière au sens du RGPD ou une donnée
 d'identité.
 
 Le tableau de décision interactif est publié comme Artifact privé ; `registre.html`
@@ -22,8 +22,8 @@ en est la source et `inventaire.csv` la version consultable.
 | Santé | 13 | 3 | 13 |
 | Études | 12 | 3 | 2 |
 | IA & dev | 10 | 10 | 0 |
+| Réseaux sociaux | 10 | 1 | 6 |
 | Administration | 8 | 1 | 5 |
-| Réseaux sociaux | 7 | 1 | 4 |
 | Immigration | 7 | 0 | 7 |
 | Banque & paiement | 6 | 5 | 6 |
 | Transport | 6 | 1 | 3 |
@@ -65,20 +65,49 @@ en est la source et `inventaire.csv` la version consultable.
 
 ## Décisions de Tanguy
 
+**Objectif redéfini le 29/09/2026 :** ne pas effacer un maximum, mais faire
+disparaître les endroits où il a pu mettre des choses compromettantes. Tout ce
+qui sert encore est gardé : fac, travail, matériel actuel, intelligence
+artificielle, compte Google, banque, tout ce qui est utilisé en 2026.
+
 **29/09/2026 — travail, intérim et candidatures : à conserver.** Les 24 services
-de la catégorie Emploi & intérim, plus BTP Santé au Travail (médecine du travail
-des missions d'intérim) et LinkedIn (réseau professionnel), passent en protégés.
-Décision enregistrée dans le registre pour les 26.
+de la catégorie Emploi & intérim, plus BTP Santé au Travail et LinkedIn, passent
+en protégés.
 
-Deux conséquences pratiques :
+**29/09/2026 — règle « garder ce qui sert » appliquée.** 90 services sans
+contenu compromettant ou encore utilisés passent à « Conserver » : santé,
+administration, immigration, études, commerce, transport, loisirs, outils.
 
-- **Genesis RH** a écrit le 17/09/2026 que la candidature a bientôt deux ans et
-  invite à mettre à jour l'espace candidat. Sans mise à jour, ils supprimeront
-  eux-mêmes les données. Pour les garder, il faut se connecter et mettre à jour.
-- **LesJeudis** a transféré le compte vers un autre opérateur le 18/09/2026 ; un
-  nouveau mot de passe sera demandé à la prochaine connexion.
+**Reste à décider : 20 services**, tous des endroits où Tanguy a pu écrire,
+poster ou discuter :
+
+- Rencontres : Tinder, Grindr, Yubo
+- Réseaux et messageries : Instagram, Facebook, Threads, TikTok, Twitch,
+  Monnett, Discord (actif, Nitro payant)
+- Jeu : Xbox / Minecraft (piste, compte sans doute ouvert avec une autre adresse)
+- YouTube : commentaires publics sous le compte Google conservé
+- Avis et forums publics : Nexus Mods, Trustpilot, Avis Vérifiés, Judge.me
+- Politique : Rassemblement National, Patriotes pour l'Europe, Les
+  Fédéralistes (adhésion en juillet 2026), HubSpot pour la fédération RN 05
+
+Pour les comptes encore utilisés, une troisième voie existe : garder le compte
+et nettoyer seulement l'ancien contenu.
+
+Pour ce qui a été publié avant 18 ans, l'article 51 de la loi Informatique et
+Libertés impose un effacement « dans les meilleurs délais » ; sans réponse dans
+le mois, la CNIL se prononce en trois semaines.
+
+Aucune plateforme de jeu ou de messagerie de jeunesse (Xbox, Snapchat,
+PlayStation, Steam, Epic) n'a jamais écrit à lystanguy@gmail.com : ces comptes
+sont sur une autre adresse.
+
+Deux conséquences pratiques des comptes conservés :
+
+- **Genesis RH** supprimera la candidature faute de mise à jour de l'espace
+  candidat.
+- **LesJeudis** demandera un nouveau mot de passe après le transfert du compte.
 
 ## État
 
-Aucune demande n'a été préparée ni envoyée. Aucun compte n'a été fermé. Le
-registre attend les décisions de Tanguy.
+Aucune demande n'a été préparée ni envoyée. Aucun compte n'a été fermé. 144
+services sur 164 ont une décision ; 20 attendent Tanguy.
