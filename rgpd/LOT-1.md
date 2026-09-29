@@ -1,7 +1,7 @@
 # Lot 1 — demandes d'effacement
 
 Préparé le 29/09/2026 sur délégation de Tanguy (« fais-le toi »).
-**Statut : en attente de sa confirmation. Rien n'est envoyé.**
+**Statut : 3 demandes envoyées le 29/09/2026 sur confirmation explicite de Tanguy (« Vas y envoie »). Échéance légale : 29/10/2026.**
 
 ## Révision de Tanguy, 29/09/2026 vers 00 h 15
 
@@ -174,3 +174,24 @@ Pour tout organisme derrière lequel il y a des personnes que Tanguy connaît
 personnel), la lettre doit sonner humaine : formelle, carrée, en prose, sans
 tournures qui trahissent une rédaction par IA. Pour les entreprises
 (plateformes, services en ligne), le style importe peu.
+
+## Envoi (29/09/2026)
+
+Sur confirmation explicite de Tanguy : « Vas y envoie ».
+
+| Organisme | Destinataire | Identifiant du message envoyé | Échéance |
+|---|---|---|---|
+| Grindr | `privacy@grindr.com` | `1a0ea9b993e5dc84` | 29/10/2026 |
+| Twitch | `privacy@twitch.tv` | `1a0ea9b9db98f67a` | 29/10/2026 |
+| Rassemblement National | `dpo@rassemblementnational.fr` | `1a0ea9b9e17319ea` | 29/10/2026 |
+
+Chaque message porte le libellé SENT dans Gmail. Un envoi prouve que la demande
+est partie, pas qu'elle a été reçue ni traitée.
+
+**Relances** : non encore autorisées par Tanguy. Aucune relance ne partira sans
+son accord.
+
+**Restent hors lot** : Yubo (brouillon conservé, non envoyé), Tinder, Discord
+(« décider plus tard »), Le Dauphiné Libéré et Patriotes pour l'Europe
+(précisions attendues), signalement direct de la vidéo TikTok (lien de la vidéo
+attendu).
