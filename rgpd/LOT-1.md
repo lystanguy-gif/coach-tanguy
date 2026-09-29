@@ -68,6 +68,17 @@ sans pièce d'identité.
   Instagram du RNJ des Hautes-Alpes ; Tanguy apparaît au moins dans une vidéo
   TikTok. Levier parallèle : signalement direct aux plateformes, voir
   `SIGNALEMENTS.md`.
+- **RN, ancien membre** (précision du 29/09/2026) : Tanguy n'est plus membre du
+  RNJ ni délégué départemental jeunesse, et n'a pas renouvelé son adhésion. La
+  demande le dit et demande de mettre fin à toute adhésion ou fonction qui
+  figurerait encore à son nom. Doctrine CNIL : une fois l'adhésion terminée, la
+  conservation doit être justifiée par une autre finalité (probatoire, fiscale,
+  administrative, notamment pour d'anciennes fonctions), en archivage
+  intermédiaire à accès restreint ; la CNIL recommande trois ans après la fin
+  d'adhésion pour les associations. La demande exige cet archivage restreint
+  pour tout ce qui serait conservé, et la suppression à terme. Sources :
+  [fichiers d'adhérents à un syndicat](https://www.cnil.fr/fr/fichiers-dadherents-un-syndicat-quelles-sont-les-bonnes-pratiques),
+  [guide RGPD des associations](https://www.cnil.fr/sites/cnil/files/atoms/files/cnil-guide_association.pdf).
 - **Grindr** précise qu'une demande faite hors de l'appli peut exiger une
   vérification d'identité supplémentaire. Aucune pièce d'identité ne sera
   transmise sans l'accord spécifique de Tanguy.
