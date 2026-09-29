@@ -4,7 +4,7 @@ Compte : `lystanguy@gmail.com`. Établi le 28 septembre 2026 à partir de tout
 l'historique accessible de la boîte, de février 2022 à septembre 2026, archives
 comprises.
 
-**161 services**, dont **28 protégés** (décision « Conserver » verrouillée) et
+**161 services**, dont **54 protégés** (décision « Conserver » verrouillée) et
 **64** portant une catégorie particulière au sens du RGPD ou une donnée
 d'identité.
 
@@ -15,15 +15,15 @@ en est la source et `inventaire.csv` la version consultable.
 
 | Catégorie | Services | Dont protégés | Dont sensibles |
 |---|---:|---:|---:|
-| Emploi & intérim | 24 | 0 | 9 |
+| Emploi & intérim | 24 | 24 | 9 |
 | Commerce | 19 | 0 | 0 |
 | Loisirs & sport | 16 | 0 | 2 |
 | Outils | 14 | 0 | 1 |
-| Santé | 13 | 2 | 13 |
+| Santé | 13 | 3 | 13 |
 | Études | 12 | 3 | 2 |
 | IA & dev | 10 | 10 | 0 |
 | Administration | 8 | 1 | 5 |
-| Réseaux sociaux | 7 | 0 | 4 |
+| Réseaux sociaux | 7 | 1 | 4 |
 | Immigration | 7 | 0 | 7 |
 | Banque & paiement | 6 | 5 | 6 |
 | Transport | 6 | 1 | 3 |
@@ -62,6 +62,21 @@ en est la source et `inventaire.csv` la version consultable.
 - Anciennes adresses et pseudonymes de Tanguy : à lui demander, jamais à inventer.
 - Les comptes créés via « Se connecter avec Google / Apple / Facebook » sans
   qu'aucun mail ne soit jamais arrivé restent invisibles par cette méthode.
+
+## Décisions de Tanguy
+
+**29/09/2026 — travail, intérim et candidatures : à conserver.** Les 24 services
+de la catégorie Emploi & intérim, plus BTP Santé au Travail (médecine du travail
+des missions d'intérim) et LinkedIn (réseau professionnel), passent en protégés.
+Décision enregistrée dans le registre pour les 26.
+
+Deux conséquences pratiques :
+
+- **Genesis RH** a écrit le 17/09/2026 que la candidature a bientôt deux ans et
+  invite à mettre à jour l'espace candidat. Sans mise à jour, ils supprimeront
+  eux-mêmes les données. Pour les garder, il faut se connecter et mettre à jour.
+- **LesJeudis** a transféré le compte vers un autre opérateur le 18/09/2026 ; un
+  nouveau mot de passe sera demandé à la prochaine connexion.
 
 ## État
 
