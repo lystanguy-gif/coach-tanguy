@@ -143,3 +143,14 @@ sympa »), le fond juridique complet est réintégré sans changer le ton :
 La mention « jamais candidat, jamais publié moi-même » est laissée de côté :
 elle sonnait comme une réponse anticipée à une objection. Elle reste
 disponible pour une relance.
+
+## Correction factuelle (29/09/2026)
+
+Tanguy précise qu'il n'avait **jamais accepté** la publication de la vidéo
+TikTok : il était présent au tournage, mais la publication n'était pas prévue.
+La phrase « j'avais accepté ces publications à l'époque ; je retire aujourd'hui
+cet accord » était donc inexacte et a été retirée. La lettre dit désormais
+qu'il n'avait pas donné son accord, ce qui renforce la demande au regard de
+l'article 9.2.d. Pour Instagram, Tanguy ne sait pas s'il apparaît : la lettre
+demande de vérifier au lieu de l'affirmer. Le texte des signalements aux
+plateformes est corrigé de la même façon.

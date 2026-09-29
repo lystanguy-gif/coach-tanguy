@@ -8,8 +8,9 @@ de chaque publication.
 ## Compte visé
 
 TikTok : `@rnj.hautes.alpes` (compte du RNJ des Hautes-Alpes), fourni par Tanguy
-le 29/09/2026. Il y apparaît au moins dans une vidéo. Le compte Instagram
-correspondant reste à identifier.
+le 29/09/2026. Il y apparaît au moins dans une vidéo, filmée sans que sa
+publication soit prévue ni acceptée par lui. Instagram : Tanguy ne sait pas s'il
+y apparaît ; la lettre au RN demande seulement de vérifier.
 
 Le lien fourni portait un code de partage TikTok (`_r`, `_t`) susceptible de
 renvoyer au compte de Tanguy : retiré, il n'apparaît ni dans la lettre au RN ni
@@ -33,11 +34,11 @@ ils servent au signalement, puis à vérifier que la vidéo a bien disparu.
 
 ## Texte à coller dans le formulaire
 
-> Je figure, identifiable, dans cette publication du compte du RNJ des
-> Hautes-Alpes (Rassemblement National Jeunesse). J'ai pu accepter d'être filmé
-> ou photographié à l'époque ; je retire aujourd'hui ce consentement. La
-> publication associe mon image à une appartenance politique, donnée sensible au
-> sens de l'article 9 du RGPD. Je ne suis pas une personnalité publique et n'ai
+> Je figure, identifiable, dans cette vidéo du compte du RNJ des Hautes-Alpes
+> (Rassemblement National Jeunesse). J'étais présent lors du tournage, mais je
+> n'ai jamais donné mon accord à sa publication, qui n'était pas prévue. La
+> vidéo associe mon image à une appartenance politique, donnée sensible au sens
+> de l'article 9 du RGPD. Je ne suis pas une personnalité publique et n'ai
 > jamais été candidat à une élection. Je demande le retrait de cette
 > publication sur le fondement du droit au respect de la vie privée et du droit
 > à l'image (article 9 du Code civil) et de l'article 17 du RGPD.
