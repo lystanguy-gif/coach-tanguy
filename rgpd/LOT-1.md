@@ -123,3 +123,23 @@ les données légalement conservées, transmission à la fédération 05.
 
 Les arguments plus fermes restent documentés plus haut, au cas où une relance
 serait nécessaire.
+
+## Version finale de la demande au RN (29/09/2026)
+
+À la demande de Tanguy (« glisse tout, mais de manière plus subtile, plus
+sympa »), le fond juridique complet est réintégré sans changer le ton :
+
+- demandes concrètes dans le corps : données d'adhérent et de contact, clôture
+  d'adhésion ou fonction, listes (dont HubSpot), photos, vidéos et
+  organigrammes, compte TikTok @rnj.hautes.alpes et Instagram du RNJ 05 ; le
+  floutage est proposé comme solution acceptable pour une photo de groupe ;
+- données légalement conservées : présentées avec compréhension, avec demande
+  de préciser lesquelles et combien de temps, et de les garder en archive à
+  accès restreint ;
+- articles regroupés dans un paragraphe « pour la bonne forme, et pour vous
+  faciliter le traitement » : 17, 21, 7.3, 9.2.d, 19, puis 12.3 pour le délai
+  d'un mois.
+
+La mention « jamais candidat, jamais publié moi-même » est laissée de côté :
+elle sonnait comme une réponse anticipée à une objection. Elle reste
+disponible pour une relance.
