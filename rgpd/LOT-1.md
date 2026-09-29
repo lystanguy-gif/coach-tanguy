@@ -64,6 +64,10 @@ sans pièce d'identité.
   appartenance, ce qui écarte l'exception de l'article 9.2.e (données rendues
   publiques par la personne). Limites possibles : liberté d'information, photos
   de groupe (floutage plutôt que suppression).
+- **RN, réseaux sociaux** : la demande nomme explicitement les comptes TikTok et
+  Instagram du RNJ des Hautes-Alpes ; Tanguy apparaît au moins dans une vidéo
+  TikTok. Levier parallèle : signalement direct aux plateformes, voir
+  `SIGNALEMENTS.md`.
 - **Grindr** précise qu'une demande faite hors de l'appli peut exiger une
   vérification d'identité supplémentaire. Aucune pièce d'identité ne sera
   transmise sans l'accord spécifique de Tanguy.
