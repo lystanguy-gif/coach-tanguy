@@ -166,3 +166,11 @@ Objets : « Demande d'effacement de mes données personnelles » (RN) et
 « Request for erasure of personal data (Article 17 GDPR) » (Grindr, Twitch).
 Contenu inchangé sur le fond. Les trois brouillons ont été relus après
 enregistrement : destinataires corrects, aucun lien parasite.
+
+## Règle de rédaction fixée par Tanguy (29/09/2026)
+
+Pour tout organisme derrière lequel il y a des personnes que Tanguy connaît
+(RN, et par extension Patriotes pour l'Europe ou tout autre cercle militant ou
+personnel), la lettre doit sonner humaine : formelle, carrée, en prose, sans
+tournures qui trahissent une rédaction par IA. Pour les entreprises
+(plateformes, services en ligne), le style importe peu.
