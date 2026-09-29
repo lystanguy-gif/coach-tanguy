@@ -192,6 +192,21 @@ est partie, pas qu'elle a été reçue ni traitée.
 son accord.
 
 **Restent hors lot** : Yubo (brouillon conservé, non envoyé), Tinder, Discord
-(« décider plus tard »), Le Dauphiné Libéré et Patriotes pour l'Europe
-(précisions attendues), signalement direct de la vidéo TikTok (lien de la vidéo
+(« décider plus tard »), Patriotes pour l'Europe (précision attendue), signalement direct de la vidéo TikTok (lien de la vidéo
 attendu).
+
+## Le Dauphiné Libéré (29/09/2026)
+
+Service protégé passé à « effacer » par Tanguy, puis confirmation spécifique :
+« Le Dauphiné, je veux plus rien avec eux. Le Dauphiné, tu supprimes. »
+
+- **Abonnement** : déjà résilié. Offre numérique Premium, mensuel prélevé,
+  abonné n° 6206835 ; résiliation prise en compte le 10/09/2025, fin le
+  12/09/2025. Plus aucun prélèvement : seul l'effacement restait à demander.
+- **Destinataire** : `ldlaboweb@ledauphine.com`, adresse de contact que Le
+  Dauphiné indique lui-même dans son mail de résiliation. Le site
+  ledauphine.com bloque la consultation automatisée : l'adresse du DPO n'a pas
+  pu être vérifiée, la lettre demande donc de lui transmettre la demande.
+- **Envoi** : 29/09/2026, message `1a0ea9d93a5c2aae`. Suppression du compte
+  client et des données, retrait de toutes les listes, retrait du
+  consentement, information sur les données conservées. Échéance : 29/10/2026.
