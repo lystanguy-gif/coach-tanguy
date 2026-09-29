@@ -55,6 +55,15 @@ sans pièce d'identité.
 - **Rassemblement National** : une partie des données peut être conservée au
   titre d'obligations légales (cotisations, dons). La demande demande de le
   justifier.
+- **RN, publications** (ajout du 29/09/2026) : la demande exige aussi le retrait
+  des photos, vidéos et posts où Tanguy apparaît, sur les sites et réseaux du
+  RN, du RNJ et de la fédération 05, ou à défaut son floutage. Fondement :
+  retrait du consentement (art. 7.3) et article 9.2.d, qui interdit de
+  communiquer hors du parti l'appartenance d'un membre sans son consentement.
+  Tanguy n'a jamais été candidat et n'a jamais publié lui-même cette
+  appartenance, ce qui écarte l'exception de l'article 9.2.e (données rendues
+  publiques par la personne). Limites possibles : liberté d'information, photos
+  de groupe (floutage plutôt que suppression).
 - **Grindr** précise qu'une demande faite hors de l'appli peut exiger une
   vérification d'identité supplémentaire. Aucune pièce d'identité ne sera
   transmise sans l'accord spécifique de Tanguy.
