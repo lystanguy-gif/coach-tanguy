@@ -39,7 +39,9 @@ sans pièce d'identité.
   19 (notification aux destinataires), 12.3 (délai d'un mois).
 - Article 9 RGPD : Grindr (orientation), RN et Patriotes (opinions politiques).
 - Article 17.1.f RGPD et article 51 de la loi Informatique et Libertés : Yubo
-  (compte ouvert mineur) ; au conditionnel pour Twitch et le RN.
+  (compte ouvert mineur) ; au conditionnel pour Twitch. **Retiré de la demande
+  au RN** : Tanguy était majeur pendant toute son adhésion (précision du
+  29/09/2026).
 - Patriotes pour l'Europe : groupe du Parlement européen, peut relever du
   règlement (UE) 2018/1725 ; la demande cite les deux régimes.
 
