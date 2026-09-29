@@ -225,3 +225,18 @@ Service protégé passé à « effacer » par Tanguy, puis confirmation spécifi
 - **Yubo** : Tanguy garde le compte (« Yubo et mon compte je garde »). Aucune
   demande envoyée ; le brouillon `r-2485890703085492133` reste non envoyé.
 - **Application intime** : compte gardé. Rien à faire.
+
+## Réponses reçues
+
+### Grindr — 29/09/2026, ticket n° 16452417
+
+Accusé de réception automatique le 29/09/2026 à 00 h 41, puis réponse de Grindr
+Trust & Safety le même jour : **aucun compte trouvé** avec `lystanguy@gmail.com`.
+Grindr n'identifie un compte que par l'adresse ayant servi à le créer et invite
+à renvoyer une demande avec une autre adresse le cas échéant. Aucune pièce
+d'identité demandée.
+
+Pistes : autre adresse mail ; adresse relais « Se connecter avec Apple »
+(`…@privaterelay.appleid.com`) ; inscription par numéro de téléphone ; compte
+déjà supprimé. Vérification proposée à Tanguy (appli, réglages Apple). Aucune
+réponse envoyée à Grindr en attendant son indication.
