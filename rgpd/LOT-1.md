@@ -105,3 +105,21 @@ pour couvrir les données résiduelles.
 Échéance légale : un mois après réception. Sans réponse, relance ; puis, sur
 accord distinct de Tanguy seulement, réclamation à la CNIL. Pour Yubo, la CNIL
 se prononce en trois semaines (article 51).
+
+## Demande au RN réécrite sur un ton courtois (29/09/2026)
+
+Tanguy précise qu'il n'est en conflit avec personne : il connaît les gens
+concernés et veut seulement qu'ils suppriment, sans hostilité. La lettre est
+réécrite en conséquence : objet « Demande de suppression de mes données
+personnelles », ton personnel et poli, arguments juridiques réduits à une
+mention des articles 17 et 21 du RGPD, sans citation de l'article 9.2.d ni
+contre-arguments anticipés.
+
+Le fond est conservé : suppression des données d'adhérent et de contact,
+clôture de toute adhésion ou fonction restante, retrait de toutes les listes,
+retrait des photos et vidéos (compte TikTok @rnj.hautes.alpes et Instagram du
+RNJ 05) avec retrait explicite de l'accord donné à l'époque, information sur
+les données légalement conservées, transmission à la fédération 05.
+
+Les arguments plus fermes restent documentés plus haut, au cas où une relance
+serait nécessaire.
