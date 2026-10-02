@@ -288,3 +288,20 @@ bloque l'accès automatisé et une partie de ses articles est payante ; TikTok e
 Instagram sont mal indexés. L'absence de résultat ici ne prouve pas l'absence
 d'articles. Vérification à faire par Tanguy sur Google depuis la France, en
 navigation privée, pour obtenir les liens nécessaires au déréférencement.
+
+### Recherches complémentaires RNJ / Hautes-Alpes (02/10/2026)
+
+Demande : « Cherche RNJ , hautes Alpes etc ». Six recherches : RNJ Hautes-Alpes,
+RN jeunes 05, fédération RN 05, « Tanguy Lys » Hautes-Alpes, « Lys » + RN
+jeunes + Gap, etc. Pages consultées :
+
+- valleesenlutte.org, article « L'extrême droite dans les Alpes et ailleurs »
+  (29/06/2026, mis à jour 06/08/2026) : décrit le RNJ 05 (réunions à Freissinouse
+  et Briançon) ; **ne mentionne ni Tanguy ni « Lys »**.
+- Alpes 1, « Conflit interne au Rassemblement National des Hautes-Alpes :
+  accusations et plainte en diffamation » : **illisible (HTTP 403)**, à ouvrir
+  par Tanguy.
+- rassemblement-national05.fr (503) et page fédération 05 de
+  rassemblementnational.fr (404) : non lisibles.
+
+**Résultat : aucune page trouvée ne le nomme.** Mêmes limites que ci-dessus.
