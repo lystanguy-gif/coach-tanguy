@@ -305,3 +305,14 @@ jeunes + Gap, etc. Pages consultées :
   rassemblementnational.fr (404) : non lisibles.
 
 **Résultat : aucune page trouvée ne le nomme.** Mêmes limites que ci-dessus.
+
+### Le Dauphiné : complément envoyé (02/10/2026)
+
+Sur instruction de Tanguy (« fais toi même le message »), complément envoyé dans
+le même fil à ldlrgpd@ledauphine.com (message `1a0fb8ae4939c846`) : activité
+politique passée dans le département, articles publiés à l'époque, discrétion
+recherchée, mention de son nom ou de son image inconnue, aucune trouvée par ses
+propres recherches. Demande conditionnelle : si leur base éditoriale le
+mentionne, anonymisation, retrait des photos ou désindexation ; sinon,
+suppression des seules données du compte abonné n° 6206835. Demande
+d'information sur le résultat et de confirmation de la suppression.
