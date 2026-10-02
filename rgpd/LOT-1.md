@@ -272,3 +272,19 @@ Repli proposé : formulaire de contact, sur communication des liens.
 Choix délibéré : ne pas rechercher le nom de Tanguy sur un moteur externe sans
 son accord (règle qu'il a fixée) ; c'est le journal, détenteur des archives,
 qui est invité à chercher.
+
+## Recherches web sur le nom (02/10/2026, autorisées par Tanguy)
+
+Autorisation explicite : « Oui fais toutes les recherches ». Huit recherches :
+« Tanguy Lys » seul ; avec Dauphiné Libéré ; avec Rassemblement National, RNJ et
+Hautes-Alpes ; « Lys Tanguy » Hautes-Alpes ; avec Savines-le-Lac, Embrun, Gap ;
+avec « délégué départemental jeunesse » ; avec ledauphine.com ; compte
+« rnj.hautes.alpes ».
+
+**Résultat : aucune page ne le concerne**, seulement des homonymes.
+
+Limites : l'outil de recherche utilisé n'est pas Google France ; ledauphine.com
+bloque l'accès automatisé et une partie de ses articles est payante ; TikTok et
+Instagram sont mal indexés. L'absence de résultat ici ne prouve pas l'absence
+d'articles. Vérification à faire par Tanguy sur Google depuis la France, en
+navigation privée, pour obtenir les liens nécessaires au déréférencement.
