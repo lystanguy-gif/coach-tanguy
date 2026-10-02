@@ -25,6 +25,34 @@ autorisation par appel dans Claude Code ; il faut d'abord répondre
 « Yes, and don't ask again » à la demande d'autorisation, sinon c'est
 inutilisable à cette échelle.
 
+## Archivage du 2 octobre 2026
+
+Demande de Tanguy : « tous les messages parasites ou spam ou répétés mets-les en
+archive et classés ». Méthode : `update_message_labels` (ajout du libellé et
+retrait de INBOX en un seul appel), cette fois stable.
+
+- **Toutes les promotions** (onglet Promotions) sorties de la réception :
+  ~1 850 messages, tous déjà étiquetés, plus ~125 traités à la main.
+- **Notifications répétées** : 744 messages (LinkedIn 411, Academia 156,
+  Apple pubs 61, TikTok 34, Patreon 23, enseignes 51, Qare 5, demandes
+  d'accès Drive 3), puis un dernier lot (Quizlet, alertes emploi Jooble et
+  HelloWork dans Pro, Planity, newsletters Claude, Asana, Kimi, Higgsfield,
+  PRO BTP, notifications « nouveau message » Caisse d'Épargne, newsletter CROUS).
+- **Demandes d'accès au dossier Drive « Révisions Droit L1 »** rangées dans
+  Cours (camarades en attente d'accès, signalé à Tanguy).
+- **Accusés de réception automatiques RGPD** (Twitch ×2, Grindr, Dauphiné
+  service client) rangés dans À vérifier ; les vraies réponses restent en
+  réception.
+- **Gardés en réception** : échanges RGPD en cours, camarades de fac, famille
+  (parking Toulon), banque, Netlify et Supabase, Apple (abonnements happn,
+  Instagram Plus, ReelShort à 17,99 €/semaine signalé), iCloud saturé,
+  France Travail, Q-Park, documents MIF (rachats), factures Bonnegueule 2024,
+  réservation Pathé.
+- Correction : les reçus de commande Bonnegueule de juillet 2026 avaient reçu
+  Publicité par erreur ; retiré, ils restent dans Abonnements.
+
+Rien n'a été supprimé, mis en corbeille ou marqué spam.
+
 ## Avancement de l'archivage au 28 septembre 2026
 
 **59 fils archivés**, sortis de la réception principale. **51 nouveaux mails
