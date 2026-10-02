@@ -316,3 +316,19 @@ propres recherches. Demande conditionnelle : si leur base éditoriale le
 mentionne, anonymisation, retrait des photos ou désindexation ; sinon,
 suppression des seules données du compte abonné n° 6206835. Demande
 d'information sur le résultat et de confirmation de la suppression.
+
+### Point des réponses (02/10/2026)
+
+- **Twitch** (support3@twitch.tv, 29/09, dossier 10570328) : la suppression se
+  fait par Tanguy lui-même, connecté au compte (réglages, suppression du
+  compte) ; effacement sous 90 jours ; ne pas se reconnecter pendant ce délai ;
+  données à conservation légale gardées le temps nécessaire. **Réponse envoyée**
+  (message `1a0fb8d3a0038a8e`) : annonce qu'il supprimera le compte lui-même ;
+  demande confirmation que l'effacement couvre messages de chat, chuchotements,
+  anciens pseudos et journaux liés au compte ou à l'adresse ; demande la liste
+  des données conservées pour obligation légale et leur durée ; demande une
+  confirmation de fin d'effacement.
+- **RN** : pas de réponse.
+- **Le Dauphiné, service client** (ldlsrc@) : seulement l'accusé automatique du
+  29/09.
+- **Grindr** : pas de nouveau message ; on attend toujours l'adresse relais Apple.
