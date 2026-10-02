@@ -240,3 +240,35 @@ Pistes : autre adresse mail ; adresse relais « Se connecter avec Apple »
 (`…@privaterelay.appleid.com`) ; inscription par numéro de téléphone ; compte
 déjà supprimé. Vérification proposée à Tanguy (appli, réglages Apple). Aucune
 réponse envoyée à Grindr en attendant son indication.
+
+### Le Dauphiné Libéré — 01/10/2026
+
+Accusé automatique du service clients (`ldlsrc@ledauphine.com`) le 29/09/2026,
+puis réponse signée « La rédaction en chef » depuis `ldlrgpd@ledauphine.com`
+(adresse RGPD du groupe EBRA, désormais vérifiée) le 01/10/2026 :
+
+- **Base utilisateurs** : demande transmise au service clients du groupe EBRA,
+  chargé de vérifier, supprimer les données fondées sur le consentement et
+  résilier les contrats. PDF joint : procédure de suppression du compte depuis
+  l'espace personnel.
+- **Base éditoriale** : droit à l'effacement non absolu, à concilier avec la
+  liberté d'informer (article 85 RGPD) ; décision du rédacteur en chef ; la
+  demande doit passer par le lien « Nous contacter » des sites EBRA, en visant
+  les articles.
+
+Tanguy précise avoir pu être mentionné dans des articles, notamment pendant son
+activité politique, « mais pas que cela », et délègue la réponse (« je te laisse
+gérer »).
+
+**Réponse envoyée le 02/10/2026** dans le fil (message `1a0fb84808419bc6`) :
+confirmation de la suppression du compte ; pour les articles, demande qu'ils
+recherchent eux-mêmes dans leur base éditoriale les publications le mentionnant
+et soumettent au rédacteur en chef l'anonymisation du nom et le retrait des
+photos dans les versions en ligne, ou à défaut la désindexation ; arguments :
+personne privée, sans fonction publique ni mandat électif, engagement
+entièrement quitté, absence d'intérêt d'actualité, opinions politiques (art. 9).
+Repli proposé : formulaire de contact, sur communication des liens.
+
+Choix délibéré : ne pas rechercher le nom de Tanguy sur un moteur externe sans
+son accord (règle qu'il a fixée) ; c'est le journal, détenteur des archives,
+qui est invité à chercher.
